@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-
+import img1 from '../assets/lost and found logo.png'
 import { Link } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
 
@@ -15,7 +15,8 @@ const Navbar = () => {
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="navbar-start">
-        <a className="btn btn-ghost text-xl">Lost and Found</a>
+        <img className="w-14" src={img1} alt="" />
+        <a className="text-orange-400 text-xl font-bold">Lost and Found</a>
       </div>
 
       <div className="navbar-end space-x-2 items-center">
@@ -35,13 +36,13 @@ const Navbar = () => {
             
             <button
               onClick={handleSignOut}
-              className="btn btn-outline btn-primary primary"
+              className="btn btn-outline btn-error"
             >
               Log Out
             </button>
           </>
         ) : (
-          <Link className="btn btn-outline btn-primary primary" to="/login">
+          <Link className="btn btn-outline btn-success" to="/login">
             Login
           </Link>
         )}

@@ -55,7 +55,7 @@ const Register = () => {
         timer: 1500,
       });
 
-      navigate("/mygroup");
+      navigate("/");
     } catch (error) {
       console.error(error);
       toast.error(error.message || "Something went wrong");
