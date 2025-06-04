@@ -1,11 +1,12 @@
 import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import Swal from "sweetalert2";
-import { AuthContex } from "../contexts/AuthContex";
+
 import { Eye, EyeOff } from "lucide-react";
+import { AuthContext } from "../contexts/AuthContext";
 
 const Login = () => {
-  const { signInUser, googleSignIn } = useContext(AuthContex);
+  const { signInUser, googleSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
 

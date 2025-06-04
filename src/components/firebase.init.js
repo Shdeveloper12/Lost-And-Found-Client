@@ -6,7 +6,7 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBo__0eiPt-_sCxXkX57JqpQpXUWOWtwKc",
+ apiKey: "AIzaSyBo__0eiPt-_sCxXkX57JqpQpXUWOWtwKc",
   authDomain: "lost-and-found-client.firebaseapp.com",
   projectId: "lost-and-found-client",
   storageBucket: "lost-and-found-client.firebasestorage.app",
@@ -16,5 +16,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+
 //Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);

@@ -1,14 +1,15 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router";
-import { AuthContex } from "../contexts/AuthContex";
+
 import { updateProfile } from "firebase/auth";
 import toast, { Toaster } from "react-hot-toast";
 import Swal from "sweetalert2";
 import { Eye, EyeOff } from "lucide-react";
+import { AuthContext } from "../contexts/AuthContext";
 
 
 const Register = () => {
-  const { createUser } = useContext(AuthContex);
+  const { createUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
