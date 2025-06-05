@@ -15,6 +15,9 @@ import Register from './pages/Register.jsx';
 import AuthProvider from './contexts/AuthProvider.jsx';
 import { ToastContainer } from 'react-toastify';
 import lostAndFoundPages from './pages/lostAndFoundPages.jsx';
+import AddLostAndFound from './pages/privatePages/AddLostAndFound.jsx';
+import AllRecoveredItemsPage from './pages/privatePages/AllRecoveredItemsPage.jsx';
+import ManageMyItemsPage from './pages/privatePages/ManageMyItemsPage.jsx';
 
 
 
@@ -40,6 +43,19 @@ const router = createBrowserRouter([
       {
         path: '/lostandfound',
         Component: lostAndFoundPages
+      },
+      {
+        path: '/addlostandfounditemspage',
+        Component: AddLostAndFound
+      },
+      {
+        path: '/allrecovered',
+        Component: AllRecoveredItemsPage
+      },
+      {
+        path: '/manageitem',
+        Component: ManageMyItemsPage
+
       }
 
     ]
