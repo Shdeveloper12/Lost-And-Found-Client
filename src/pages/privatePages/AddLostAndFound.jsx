@@ -54,25 +54,25 @@ const AddLostAndFound = () => {
     }
 
     const formData = new FormData(form);
-    const groupData = Object.fromEntries(formData.entries());
+    const postData = Object.fromEntries(formData.entries());
     
 
-    const newGroup = {
-      ...groupData,
+    const newPost = {
+      ...postData,
       category,
       types,
       location: `${coordinates.lat}, ${coordinates.lng}`,
       name: user?.displayName || "",
       email: user?.email || "",
     };
-    console.log(newGroup)
+    console.log(newPost)
 
-    fetch("https://your-backend-api.com/api/lostandfound", {
+    fetch(`${import.meta.env.VITE_API_URL}/lostandfounditems`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(newGroup),
+      body: JSON.stringify(newPost)
       
     })
       .then((res) => res.json())
