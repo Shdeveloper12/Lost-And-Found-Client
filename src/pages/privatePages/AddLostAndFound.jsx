@@ -1,22 +1,24 @@
+// AddLostAndFound.jsx
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
+
+import MiniMapPicker from "../../components/MIniMapPicker"; // Adjust path if needed
 
 const AddLostAndFound = () => {
   const [category, setCategory] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [types, setTypes] = useState("");
   const [dropdown, setDropdown] = useState(false);
+  const [coordinates, setCoordinates] = useState(null);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
-
-  const handleSelectTypes = (rat) =>{
+  const handleSelectTypes = (rat) => {
     setTypes(rat);
     setDropdown(false);
   };
-
 
   const handleSelectCategory = (cat) => {
     setCategory(cat);
@@ -34,31 +36,44 @@ const AddLostAndFound = () => {
         confirmButtonText: "OK",
       });
     }
+
     if (!category) {
       return Swal.fire({
         icon: "warning",
-        title: "Please select a hobby category!",
+        title: "Please select a category!",
+        confirmButtonText: "OK",
+      });
+    }
+
+    if (!coordinates) {
+      return Swal.fire({
+        icon: "warning",
+        title: "Please select a location on the map!",
         confirmButtonText: "OK",
       });
     }
 
     const formData = new FormData(form);
     const groupData = Object.fromEntries(formData.entries());
+    
 
     const newGroup = {
       ...groupData,
       category,
       types,
+      location: `${coordinates.lat}, ${coordinates.lng}`,
       name: user?.displayName || "",
       email: user?.email || "",
     };
+    console.log(newGroup)
 
-    fetch("https://hobbyhub-server-xi.vercel.app/allgroups", {
+    fetch("https://your-backend-api.com/api/lostandfound", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
       body: JSON.stringify(newGroup),
+      
     })
       .then((res) => res.json())
       .then((data) => {
@@ -70,7 +85,9 @@ const AddLostAndFound = () => {
             form.reset();
             setTypes("");
             setCategory("");
+            setCoordinates(null);
             navigate("/lostandfound");
+            
           });
         }
       })
@@ -78,31 +95,28 @@ const AddLostAndFound = () => {
         Swal.fire("Error!", "Failed to create post.", "error");
       });
   };
+
   return (
     <div className="p-8 md:p-24">
       <h1 className="text-center mb-14 text-4xl text-orange-500 font-bold">
-        Post a Lost or Found Items
+        Post a Lost or Found Item
       </h1>
 
       <form onSubmit={handleCreateGroup}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <fieldset className="fieldset rounded-box p-4">
-            <label className="label font-bold text-orange-400 secondary">
-              Title
-            </label>
+            <label className="label font-bold text-orange-400">Title</label>
             <input
               type="text"
-              name="groupname"
+              name="title"
               className="input w-full"
-              placeholder="Enter group name"
+              placeholder="Enter title"
               required
             />
           </fieldset>
 
           <fieldset className="fieldset rounded-box p-4">
-            <label className="label font-bold text-orange-400 secondary ">
-              Image URL
-            </label>
+            <label className="label font-bold text-orange-400">Image URL</label>
             <input
               type="text"
               name="imageurl"
@@ -113,78 +127,66 @@ const AddLostAndFound = () => {
           </fieldset>
 
           <fieldset className="fieldset rounded-box p-4">
-            <label className="label font-bold text-orange-400 secondary">
-              Your Name
-            </label>
-            <p className="input w-full ">{user?.displayName}</p>
+            <label className="label font-bold text-orange-400">Your Name</label>
+            <p className="input w-full">{user?.displayName}</p>
           </fieldset>
 
           <fieldset className="fieldset rounded-box p-4">
-            <label className="label font-bold text-orange-400 secondary">
+            <label className="label font-bold text-orange-400">
               Your Email
             </label>
             <p className="input w-full">{user?.email}</p>
           </fieldset>
 
           <fieldset className="fieldset rounded-box p-4">
-            <label className="label secondary font-bold text-orange-400">
-              Date
-            </label>
+            <label className="label font-bold text-orange-400">Date</label>
             <input type="date" name="date" className="input w-full" required />
           </fieldset>
-
           <fieldset className="fieldset rounded-box p-4">
-            <label className="label secondary font-bold text-orange-400">
-              Location
+            <label className="label font-bold text-orange-400">
+              Description
             </label>
-            <input
-              type="text"
-              name="location"
-              className="input w-full"
-              placeholder="Enter meeting location"
+            <textarea
+              className="textarea w-full"
+              name="description"
+              placeholder="Write a description"
               required
-            />
+            ></textarea>
           </fieldset>
         </div>
-        <fieldset className="fieldset rounded-box p-4 ">
-          <label className="label secondary font-bold text-orange-400">
-            Description
+
+        <fieldset className="fieldset rounded-box p-4 col-span-2">
+          <label className="label font-bold text-orange-400">
+            Select Location on the Map
           </label>
-          <textarea
-            className="textarea w-full"
-            name="description"
-            placeholder="Write a description"
-            required
-          ></textarea>
+          <MiniMapPicker value={coordinates} onChange={setCoordinates} />
+          {coordinates && (
+            <p className="mt-2 text-sm text-gray-600">
+              Selected: {coordinates.lat.toFixed(5)},{" "}
+              {coordinates.lng.toFixed(5)}
+            </p>
+          )}
         </fieldset>
 
-        {/* Hobby Category Selection */}
+        {/* Types Dropdown */}
         <div className="grid grid-cols-2">
           <div className="flex flex-col items-center mt-6">
             {types && (
-              <p className="text-lg secondary font-semibold text-orange-400 mb-2">
+              <p className="text-lg font-semibold text-orange-400 mb-2">
                 Selected Type: <span className="text-blue-700">{types}</span>
               </p>
             )}
-
             <div className="relative">
               <button
                 type="button"
                 onClick={() => setDropdown(!dropdown)}
                 className="btn"
               >
-                {category
-                  ? `Change Types (${types})`
-                  : "Select Types"}
+                {types ? `Change Type (${types})` : "Select Type"}
               </button>
-
               {dropdown && (
-                <ul className="absolute secondary top-full mt-2 bg-orange-400 text-black w-52 p-2 shadow-lg rounded-box z-10">
-                  {[
-                    "Lost",
-                    "Found",
-                    
-                  ].map((type) => (
+                <ul className="absolute top-full mt-2 bg-orange-400 text-black w-52 p-2 shadow-lg rounded-box z-10">
+                  {["Lost", "Found"].map((type) => (
                     <li key={type}>
                       <button
                         type="button"
@@ -199,45 +201,38 @@ const AddLostAndFound = () => {
               )}
             </div>
           </div>
+
+          {/* Category Dropdown */}
           <div className="flex flex-col items-center mt-6">
             {category && (
-              <p className="text-lg secondary font-semibold text-orange-400 mb-2">
-                Selected Hobby:{" "}
+              <p className="text-lg font-semibold text-orange-400 mb-2">
+                Selected Category:{" "}
                 <span className="text-blue-700">{category}</span>
               </p>
             )}
-
             <div className="relative">
               <button
                 type="button"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
                 className="btn"
               >
-                {category
-                  ? `Change Category (${category})`
-                  : "Select Category"}
+                {category ? `Change Category (${category})` : "Select Category"}
               </button>
-
               {dropdownOpen && (
-                <ul className="absolute secondary top-full mt-2 bg-orange-400 text-black w-52 p-2 shadow-lg rounded-box z-10">
-                  {[
-                    "Pet",
-                    "Documents",
-                    "Gadgets",
-                    "Money",
-                    "Electronics",
-                    
-                  ].map((category) => (
-                    <li key={category}>
-                      <button
-                        type="button"
-                        onClick={() => handleSelectCategory(category)}
-                        className="w-full text-left hover:bg-gray-100 px-2 py-1 rounded"
-                      >
-                        {category}
-                      </button>
-                    </li>
-                  ))}
+                <ul className="absolute top-full mt-2 bg-orange-400 text-black w-52 p-2 shadow-lg rounded-box z-10">
+                  {["Pet", "Documents", "Gadgets", "Money", "Electronics"].map(
+                    (cat) => (
+                      <li key={cat}>
+                        <button
+                          type="button"
+                          onClick={() => handleSelectCategory(cat)}
+                          className="w-full text-left hover:bg-gray-100 px-2 py-1 rounded"
+                        >
+                          {cat}
+                        </button>
+                      </li>
+                    )
+                  )}
                 </ul>
               )}
             </div>
@@ -248,7 +243,7 @@ const AddLostAndFound = () => {
         <div className="flex justify-center">
           <button
             type="submit"
-            className="btn  btn-outline primary btn-success mt-10 rounded-xl w-50"
+            className="btn btn-outline btn-success mt-10 rounded-xl w-50"
           >
             Add Post
           </button>
