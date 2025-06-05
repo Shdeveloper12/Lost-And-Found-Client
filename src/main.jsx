@@ -14,6 +14,7 @@ import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
 import AuthProvider from './contexts/AuthProvider.jsx';
 import { ToastContainer } from 'react-toastify';
+import lostAndFoundPages from './pages/lostAndFoundPages.jsx';
 
 
 
@@ -37,7 +38,8 @@ const router = createBrowserRouter([
         Component: Register
       },
       {
-        
+        path: '/lostandfound',
+        Component: lostAndFoundPages
       }
 
     ]

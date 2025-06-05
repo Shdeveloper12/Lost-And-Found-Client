@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import Swal from "sweetalert2";
+import loginanimation from "../assets/lotties/animation2.json"
 
 import { Eye, EyeOff } from "lucide-react";
 import { AuthContext } from "../contexts/AuthContext";
+import Lottie from "lottie-react";
 
 const Login = () => {
   const { signInUser, googleSignIn } = useContext(AuthContext);
@@ -89,8 +91,18 @@ const Login = () => {
   };
 
   return (
-    <div className="hero min-h-screen flex justify-center items-center">
-      <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+    <div className="hero bg-base-200 min-h-screen">
+      <div className="hero-content flex-col lg:flex-row-reverse">
+        
+        
+          <Lottie
+          style={{width: "400px"}}
+          animationData={loginanimation}
+          loop = {true}
+        >
+        </Lottie>
+
+        <div  className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
         <div className="card-body">
           <h1 className="text-center mt-5 font-bold text-3xl">Login Now</h1>
           <form onSubmit={handleLogin} className="fieldset">
@@ -175,6 +187,7 @@ const Login = () => {
             </svg>
             <span className="ml-2">Login with Google</span>
           </button>
+        </div>
         </div>
       </div>
     </div>

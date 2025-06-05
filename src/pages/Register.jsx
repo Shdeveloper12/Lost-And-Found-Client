@@ -1,12 +1,12 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router";
-
+import registerlottie from "../assets/lotties/animation1.json"
 import { updateProfile } from "firebase/auth";
 import toast, { Toaster } from "react-hot-toast";
 import Swal from "sweetalert2";
 import { Eye, EyeOff } from "lucide-react";
 import { AuthContext } from "../contexts/AuthContext";
-
+import Lottie from "lottie-react";
 
 const Register = () => {
   const { createUser } = useContext(AuthContext);
@@ -65,9 +65,21 @@ const Register = () => {
   };
 
   return (
-    <div className="hero  min-h-screen">
+    <div className="hero bg-base-200 min-h-screen">
       <Toaster />
-      <div className="card bg-base-100 w-full max-w-sm shadow-2xl">
+
+
+      <div className="hero-content flex-col lg:flex-row-reverse">
+        <Lottie
+          style={{width: "350px"}}
+          animationData={registerlottie}
+          loop = {true}
+        >
+
+        </Lottie>
+        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl" >
+
+       
         <h1 className="text-center mt-5 font-bold text-3xl">Register Now</h1>
         <div className="card-body">
           <form onSubmit={handleRegister}>
@@ -102,12 +114,12 @@ const Register = () => {
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
-                className="input input-bordered w-full pr-10"
+                className="input input-bordered w-80 pr-10"
                 placeholder="Password"
                 required
               />
               <span
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer text-gray-500"
+                className="absolute right-8 top-1/2 transform -translate-y-1/2 cursor-pointer text-gray-500"
                 onClick={togglePassword}
               >
                 {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
@@ -130,6 +142,7 @@ const Register = () => {
             </button>
           </form>
         </div>
+         </div>
       </div>
     </div>
   );
