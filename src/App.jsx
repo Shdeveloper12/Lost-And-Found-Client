@@ -1,19 +1,38 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { useLoaderData } from 'react-router'
+import { Home } from 'lucide-react'
 
 
 function App() {
-  const [count, setCount] = useState(0)
+  const initialPost = useLoaderData()
+  const [posts, setPost] = useState(initialPost)
 
   return (
-    <>
-      
-      <h1 className='text-4xl'>Vite + React</h1>
-      
-        
-    </>
+    <div>
+
+      <div className=' grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mx-2 2 bg-green-50 p-5'>
+
+        {
+
+          posts.map(post => <Home
+
+            key={post.id}
+            setPost={setPost}
+            posts={posts}
+            post={post}
+            
+
+          ></Home>)
+
+
+        }
+
+
+
+      </div>
+
+    </div>
   )
 }
 

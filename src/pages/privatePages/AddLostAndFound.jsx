@@ -220,7 +220,7 @@ const AddLostAndFound = () => {
               </button>
               {dropdownOpen && (
                 <ul className="absolute top-full mt-2 bg-orange-400 text-black w-52 p-2 shadow-lg rounded-box z-10">
-                  {["Pet", "Documents", "Gadgets", "Money", "Electronics"].map(
+                  {["Pet", "Documents", "Gadgets","Vehicle", "Money", "Electronics"].map(
                     (cat) => (
                       <li key={cat}>
                         <button
