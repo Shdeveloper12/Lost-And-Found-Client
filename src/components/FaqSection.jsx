@@ -8,7 +8,7 @@ const FaqSection = () => {
       <div className="text-center font-bold mt-12 text-3xl">
         <h1>How it Works</h1>
       </div>
-      <div className="mx-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5">
+      <div className="mx-5 mb-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5">
         <div className="space-y-5 mt-8">
           <div
             tabIndex={0}
@@ -50,7 +50,7 @@ const FaqSection = () => {
           </div>
         </div>
 
-        <div className="ml-0  md:ml-26 lg:ml-26">
+        <div className="ml-0  md:ml-26 lg:ml-32">
           <Lottie
             style={{ width: "400px" }}
             animationData={faqanimation}
