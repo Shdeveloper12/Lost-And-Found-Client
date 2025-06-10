@@ -20,7 +20,7 @@ const LostAndFoundPages = () => {
     }
     return (
         <div>
-            <div className='text-center lato mt-8 text-2xl font-bold text-green-400'>Showing All Lost And Found Items</div>
+            <div className='text-center lato my-12  text-2xl font-bold text-orange-500'> All Lost And Found Items</div>
            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mx-2  p-5'>
                 {
 

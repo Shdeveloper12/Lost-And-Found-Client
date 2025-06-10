@@ -20,7 +20,7 @@ const PostDetailsPages = () => {
 
     return (
         <div className='p-16 '>
-            <div className='bg-orange-200 max-w-3xl mx-auto p-12 shadow-2xl  rounded-xl'>
+            <div className='bg-green-300 max-w-3xl mx-auto p-12 shadow-2xl  rounded-xl'>
 
                 <img src={imageurl} alt="postImg" className='rounded w-full h-100'/>
                 <div className='mt-5'>

@@ -6,7 +6,7 @@ const FaqSection = () => {
   return (
     <>
       <div className="text-center font-bold mt-12 text-3xl">
-        <h1>How it Works</h1>
+        <h1 className="text-orange-500">How it Works</h1>
       </div>
       <div className="mx-5 mb-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5">
         <div className="space-y-5 mt-8">
