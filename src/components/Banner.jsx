@@ -8,24 +8,25 @@ import img3 from "../assets/banner/reconnect.jpg"
 
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { Link } from 'react-router';
 
 const slides = [
   {
     title: 'Lost Something?',
     description: 'Post a missing item and let the community help you find it.',
-    button: 'Report Lost Item',
+    button: <Link to="/addlostandfounditemspage">Report Lost Item</Link>,
     image: img1,
   },
   {
     title: 'Found Something?',
     description: 'Be a good citizen. Report what you’ve found.',
-    button: 'Post Found Item',
+    button:  <Link to="/addlostandfounditemspage">Post Found Item</Link>,
     image: img2,
   },
   {
     title: 'Reconnect People with Their Belongings',
     description: 'Browse listings of lost and found items around your area.',
-    button: 'View Listings',
+    button: <Link to="/manageitem">'View Listings</Link>,
     image: img3,
   },
 ];

@@ -1,15 +1,17 @@
 import React from 'react';
 import Banner from '../components/Banner';
 import LatestFindAndLost from '../components/LatestFindAndLost';
-import { useLoaderData } from 'react-router';
+import FaqSection from '../components/FaqSection';
+
 
 const Home = () => {
-    const posts = useLoaderData();
+   
     return (
         
         <div>
             <Banner></Banner>
             <LatestFindAndLost></LatestFindAndLost>
+            <FaqSection></FaqSection>
         </div>
     );
 };
