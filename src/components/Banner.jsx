@@ -26,7 +26,7 @@ const slides = [
   {
     title: 'Reconnect People with Their Belongings',
     description: 'Browse listings of lost and found items around your area.',
-    button: <Link to="/manageitem">'View Listings</Link>,
+    button: <Link to="/manageitem">View Listings</Link>,
     image: img3,
   },
 ];
@@ -48,7 +48,7 @@ const Banner = () => {
               style={{ backgroundImage: `url(${slide.image})` }}
             >
               <div className=" bg-opacity-50 p-6 rounded-xl text-center max-w-xl">
-                <h2 className="text-4xl font-bold mb-2 text-orange-600">{slide.title}</h2>
+                <h2 className="text-4xl font-bold mb-2 text-red-600">{slide.title}</h2>
                 <p className="mb-4">{slide.description}</p>
                 <button className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-5 py-2 rounded-full transition duration-300">
                   {slide.button}

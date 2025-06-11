@@ -1,155 +1,133 @@
-// AddLostAndFound.jsx
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router";
 import { AuthContext } from "../../contexts/AuthContext";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router";
+import MiniMapPicker from "../../components/MiniMapPicker";
 
-import MiniMapPicker from "../../components/MiniMapPicker"; 
 
-const AddLostAndFound = () => {
+const UpdateLostAndFound = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
+
+  const [post, setPost] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [category, setCategory] = useState("");
-  const [dropdownOpen, setDropdownOpen] = useState(false);
   const [types, setTypes] = useState("");
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const [dropdown, setDropdown] = useState(false);
   const [coordinates, setCoordinates] = useState(null);
-  const { user } = useContext(AuthContext);
-  const navigate = useNavigate();
 
-  const handleSelectTypes = (rat) => {
-    setTypes(rat);
-    setDropdown(false);
-  };
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/lostandfounditems/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setPost(data);
+        setCategory(data.category);
+        setTypes(data.types);
+        const [lat, lng] = data.location.split(",").map(Number);
+        setCoordinates({ lat, lng });
+        setLoading(false);
+      });
+  }, [id]);
 
-  const handleSelectCategory = (cat) => {
-    setCategory(cat);
-    setDropdownOpen(false);
-  };
-
-  const handleCreateGroup = (e) => {
+  const handleUpdate = (e) => {
     e.preventDefault();
     const form = e.target;
-
-    if (!types) {
-      return Swal.fire({
-        icon: "warning",
-        title: "Please select a type!",
-        confirmButtonText: "OK",
-      });
-    }
-
-    if (!category) {
-      return Swal.fire({
-        icon: "warning",
-        title: "Please select a category!",
-        confirmButtonText: "OK",
-      });
-    }
-
-    if (!coordinates) {
-      return Swal.fire({
-        icon: "warning",
-        title: "Please select a location on the map!",
-        confirmButtonText: "OK",
-      });
-    }
-
     const formData = new FormData(form);
-    const postData = Object.fromEntries(formData.entries());
-    
+    const updatedData = Object.fromEntries(formData.entries());
 
-    const newPost = {
-      ...postData,
+    const updatePost = {
+      ...updatedData,
       category,
       types,
       location: `${coordinates.lat}, ${coordinates.lng}`,
       name: user?.displayName || "",
       email: user?.email || "",
     };
-    console.log(newPost)
 
-    fetch(`${import.meta.env.VITE_API_URL}/lostandfounditems`, {
-      method: "POST",
+    fetch(`${import.meta.env.VITE_API_URL}/lostandfounditems/${id}`, {
+      method: "PUT",
       headers: {
-        "content-type": "application/json",
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(newPost)
-      
+      body: JSON.stringify(updatePost),
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.insertedId || data.acknowledged) {
-          Swal.fire({
-            title: "Post Added Successfully!",
-            icon: "success",
-          }).then(() => {
-            form.reset();
-            setTypes("");
-            setCategory("");
-            setCoordinates(null);
-            navigate("/lostandfound");
-            
-          });
+        if (data.modifiedCount > 0 || data.acknowledged) {
+          Swal.fire("Success!", "Item updated successfully!", "success").then(
+            () => {
+              navigate("/manageitem");
+            }
+          );
         }
-      })
-      .catch(() => {
-        Swal.fire("Error!", "Failed to create post.", "error");
       });
   };
+
+  if (loading) return <p className="text-center mt-20">Loading...</p>;
 
   return (
     <div className="p-8 md:p-24">
       <h1 className="text-center mb-14 text-3xl text-orange-500 font-bold">
-        Post a Lost or Found Item
+        Update Lost or Found Item
       </h1>
 
-      <form onSubmit={handleCreateGroup}>
+      <form onSubmit={handleUpdate}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <fieldset className="fieldset rounded-box p-4">
+          <fieldset className="fieldset p-4">
             <label className="label font-bold text-orange-400">Title</label>
             <input
               type="text"
               name="title"
               className="input w-full"
-              placeholder="Enter title"
+              defaultValue={post.title}
               required
             />
           </fieldset>
 
-          <fieldset className="fieldset rounded-box p-4">
+          <fieldset className="fieldset p-4">
             <label className="label font-bold text-orange-400">Image URL</label>
             <input
               type="text"
               name="imageurl"
               className="input w-full"
-              placeholder="Enter image URL"
+              defaultValue={post.imageurl}
               required
             />
           </fieldset>
 
-          <fieldset className="fieldset rounded-box p-4">
+          <fieldset className="fieldset p-4">
             <label className="label font-bold text-orange-400">Your Name</label>
             <p className="input w-full">{user?.displayName}</p>
           </fieldset>
 
-          <fieldset className="fieldset rounded-box p-4">
+          <fieldset className="fieldset p-4">
             <label className="label font-bold text-orange-400">
               Your Email
             </label>
             <p className="input w-full">{user?.email}</p>
           </fieldset>
 
-          <fieldset className="fieldset rounded-box p-4">
+          <fieldset className="fieldset p-4">
             <label className="label font-bold text-orange-400">Date</label>
-            <input type="date" name="date" className="input w-full" required />
+            <input
+              type="date"
+              name="date"
+              className="input w-full"
+              defaultValue={post.date}
+              required
+            />
           </fieldset>
-          <fieldset className="fieldset rounded-box p-4">
+
+          <fieldset className="fieldset p-4">
             <label className="label font-bold text-orange-400">
               Description
             </label>
             <textarea
               className="textarea w-full"
               name="description"
-              placeholder="Write a description"
+              defaultValue={post.description}
               required
             ></textarea>
           </fieldset>
@@ -157,7 +135,7 @@ const AddLostAndFound = () => {
 
         <fieldset className="fieldset rounded-box p-4 col-span-2">
           <label className="label font-bold text-orange-400">
-            Select Location on the Map
+            Update Location on Map
           </label>
           <MiniMapPicker value={coordinates} onChange={setCoordinates} />
           {coordinates && (
@@ -168,14 +146,12 @@ const AddLostAndFound = () => {
           )}
         </fieldset>
 
-        {/* Types Dropdown */}
+        {/* Dropdowns */}
         <div className="grid grid-cols-2">
           <div className="flex flex-col items-center mt-6">
-            {types && (
-              <p className="text-lg font-semibold text-orange-400 mb-2">
-                Selected Type: <span className="text-blue-700">{types}</span>
-              </p>
-            )}
+            <p className="text-lg font-semibold text-orange-400 mb-2">
+              Selected Type: <span className="text-blue-700">{types}</span>
+            </p>
             <div className="relative">
               <button
                 type="button"
@@ -190,7 +166,10 @@ const AddLostAndFound = () => {
                     <li key={type}>
                       <button
                         type="button"
-                        onClick={() => handleSelectTypes(type)}
+                        onClick={() => {
+                          setTypes(type);
+                          setDropdown(false);
+                        }}
                         className="w-full text-left hover:bg-gray-100 px-2 py-1 rounded"
                       >
                         {type}
@@ -202,14 +181,11 @@ const AddLostAndFound = () => {
             </div>
           </div>
 
-          {/* Category Dropdown */}
           <div className="flex flex-col items-center mt-6">
-            {category && (
-              <p className="text-lg font-semibold text-orange-400 mb-2">
-                Selected Category:{" "}
-                <span className="text-blue-700">{category}</span>
-              </p>
-            )}
+            <p className="text-lg font-semibold text-orange-400 mb-2">
+              Selected Category:{" "}
+              <span className="text-blue-700">{category}</span>
+            </p>
             <div className="relative">
               <button
                 type="button"
@@ -220,32 +196,40 @@ const AddLostAndFound = () => {
               </button>
               {dropdownOpen && (
                 <ul className="absolute top-full mt-2 bg-orange-400 text-black w-52 p-2 shadow-lg rounded-box z-10">
-                  {["Pet", "Documents", "Gadgets","Vehicle", "Money", "Electronics"].map(
-                    (cat) => (
-                      <li key={cat}>
-                        <button
-                          type="button"
-                          onClick={() => handleSelectCategory(cat)}
-                          className="w-full text-left hover:bg-gray-100 px-2 py-1 rounded"
-                        >
-                          {cat}
-                        </button>
-                      </li>
-                    )
-                  )}
+                  {[
+                    "Pet",
+                    "Documents",
+                    "Gadgets",
+                    "Vehicle",
+                    "Money",
+                    "Electronics",
+                  ].map((cat) => (
+                    <li key={cat}>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setCategory(cat);
+                          setDropdownOpen(false);
+                        }}
+                        className="w-full text-left hover:bg-gray-100 px-2 py-1 rounded"
+                      >
+                        {cat}
+                      </button>
+                    </li>
+                  ))}
                 </ul>
               )}
             </div>
           </div>
         </div>
 
-        {/* Submit Button */}
+        {/* Submit */}
         <div className="flex justify-center">
           <button
             type="submit"
             className="btn btn-outline btn-success mt-10 rounded-xl w-50"
           >
-            Add Post
+            Update Post
           </button>
         </div>
       </form>
@@ -253,4 +237,4 @@ const AddLostAndFound = () => {
   );
 };
 
-export default AddLostAndFound;
+export default UpdateLostAndFound;

@@ -1,15 +1,18 @@
 import React, { useContext } from "react";
 import img1 from "../assets/lost and found logo.png";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
+  
 
   const handleSignOut = () => {
     if (window.confirm("Are you sure you want to sign out?")) {
       signOutUser()
+       
         .then(() => console.log("Sign out successfully"))
+       
         .catch((error) => console.log(error));
     }
   };

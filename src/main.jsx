@@ -1,7 +1,6 @@
 import { StrictMode, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-
 import { createBrowserRouter, RouterProvider } from "react-router";
 import Home from "./pages/Home.jsx";
 import Root from "./routes/Root.jsx";
@@ -10,12 +9,14 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import AuthProvider from "./contexts/AuthProvider.jsx";
 import { ToastContainer } from "react-toastify";
-import lostAndFoundPages from "./pages/lostAndFoundPages.jsx";
+import PrivateRoute from "./pages/privatePages/PrivateRoutes.jsx";
 import AddLostAndFound from "./pages/privatePages/AddLostAndFound.jsx";
 import AllRecoveredItemsPage from "./pages/privatePages/AllRecoveredItemsPage.jsx";
 import ManageMyItemsPage from "./pages/privatePages/ManageMyItemsPage.jsx";
 import PostDetailsPages from "./pages/privatePages/PostDetailsPages.jsx";
-import { Group } from "lucide-react";
+import LostAndFoundPages from "./pages/lostAndFoundPages.jsx";
+import UpdateLostAndFound from "./pages/privatePages/UpdateItemsPage.jsx";
+
 
 const loadPostById = async ({params}) =>{
   const res = await fetch (`${import.meta.env.VITE_API_URL}/lostandfounditems`);
@@ -27,44 +28,49 @@ const router = createBrowserRouter([
   {
     path: "/",
     errorElement: <Error></Error>,
-    Component: Root,
+    element: <Root></Root>,
     children: [
       {
         path: "/",
         loader: () =>
           fetch(`${import.meta.env.VITE_API_URL}/lostandfounditems`),
-        Component: Home,
+        element: <Home></Home>
       },
       {
         path: "/login",
-        Component: Login,
+        element: <Login></Login>
       },
       {
         path: "/register",
-        Component: Register,
+        element: <Register></Register>,
       },
       {
         path: "/lostandfound",
         loader: () =>
           fetch(`${import.meta.env.VITE_API_URL}/lostandfounditems`),
-        Component: lostAndFoundPages,
+        element: <LostAndFoundPages></LostAndFoundPages>,
       },
       {
         path: "/addlostandfounditemspage",
-        Component: AddLostAndFound,
+        element: <PrivateRoute><AddLostAndFound></AddLostAndFound></PrivateRoute>
+      },
+      {
+        path: "/updatelostandfoundpost/:id",
+        loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/lostandfounditems/${params.id}`),
+        element: <PrivateRoute><UpdateLostAndFound></UpdateLostAndFound></PrivateRoute>
       },
       {
         path: '/postdetails/:id',
         loader: loadPostById,
-        Component: PostDetailsPages,
+        element:<PrivateRoute><PostDetailsPages></PostDetailsPages></PrivateRoute> ,
       },
       {
         path: "/allrecovered",
-        Component: AllRecoveredItemsPage,
+        element: <PrivateRoute><AllRecoveredItemsPage></AllRecoveredItemsPage></PrivateRoute>
       },
       {
         path: "/manageitem",
-        Component: ManageMyItemsPage,
+        element:<PrivateRoute><ManageMyItemsPage></ManageMyItemsPage></PrivateRoute>,
       },
     ],
   },

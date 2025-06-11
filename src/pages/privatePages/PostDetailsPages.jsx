@@ -199,11 +199,7 @@ const PostDetailsPages = () => {
                   readOnly
                   className="input input-bordered w-full mb-2"
                 />
-                <img
-                  src={user?.photoURL}
-                  alt="User"
-                  className="w-12 h-12 rounded-full mx-auto mt-2"
-                />
+                
               </div>
               <div className="flex justify-between mt-4">
                 <button type="submit" className="btn btn-success">
