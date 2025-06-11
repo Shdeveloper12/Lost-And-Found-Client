@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router";
 
 const AllPostCard = ({ post }) => {
-  const { _id, imageurl, title } = post;
+  const { _id, imageurl, title, date } = post;
   return (
     <>
       <motion.div
@@ -25,10 +25,10 @@ const AllPostCard = ({ post }) => {
           <img src={imageurl} alt="Shoes" className=" w-100 h-70" />
         </figure>
         <div className=" items-center text-center">
-          <h2 className=" text-lg ">
+          <h2 className=" text-lg mb-2">
             <span className="font-bold primary">Title:</span> {title}
           </h2>
-
+            <p><strong className="font-bold">Date: </strong>{date}</p>
           <div className="p-5">
             <button className="btn  secondary">
               <Link to={`/postdetails/${_id}`}>See Details</Link>{" "}
