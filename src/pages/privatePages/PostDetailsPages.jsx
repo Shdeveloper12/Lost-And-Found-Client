@@ -1,5 +1,10 @@
 import React, { useState, useContext } from "react";
-import { Navigate, useLoaderData, useNavigate, useNavigation } from "react-router";
+import {
+  Navigate,
+  useLoaderData,
+  useNavigate,
+  useNavigation,
+} from "react-router";
 import { AuthContext } from "../../contexts/AuthContext";
 import Swal from "sweetalert2";
 
@@ -88,7 +93,7 @@ const PostDetailsPages = () => {
           icon: "success",
         });
         setShowModal(false);
-        navigate( "/allrecovered");
+        navigate("/allrecovered");
       } else {
         alert("Failed to submit. Please try again.");
       }
@@ -100,7 +105,7 @@ const PostDetailsPages = () => {
 
   return (
     <div className="p-16">
-      <div className="bg-green-300 max-w-3xl mx-auto  shadow-2xl rounded-xl">
+      <div className="bg-gradient-to-r from-orange-300 from-10% via-red-300 via-30% to-orange-300 to-90% max-w-3xl mx-auto  shadow-2xl rounded-xl">
         <img
           src={imageurl}
           alt="postImg"
@@ -163,7 +168,9 @@ const PostDetailsPages = () => {
       {showModal && (
         <div className="fixed inset-0 z-50 bg-green-200 bg-opacity-50 flex items-center justify-center">
           <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg relative">
-            <h2 className="text-xl font-bold mb-4 text-center">Recovery Confirmation</h2>
+            <h2 className="text-xl font-bold mb-4 text-center">
+              Recovery Confirmation
+            </h2>
             <form onSubmit={handleSubmit}>
               <div className="mb-2">
                 <label className="block mb-1 font-medium">
@@ -199,7 +206,6 @@ const PostDetailsPages = () => {
                   readOnly
                   className="input input-bordered w-full mb-2"
                 />
-                
               </div>
               <div className="flex justify-between mt-4">
                 <button type="submit" className="btn btn-success">

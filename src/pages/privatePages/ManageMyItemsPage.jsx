@@ -67,10 +67,10 @@ const ManageMyItems = () => {
 
   return (
     <div className="p-6 max-w-6xl mx-auto">
-      <h2 className="text-3xl font-bold mb-6 text-center">Manage My Items</h2>
+      <h2 className="text-3xl font-bold mb-6 text-center text-orange-500">Manage My Items</h2>
 
       {/* Filter by date */}
-      <div className="mb-4">
+      <div className="mb-4 text-center mt-12">
         <label className="font-semibold mr-2">Filter by Date:</label>
         <input
           type="date"

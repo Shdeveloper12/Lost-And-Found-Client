@@ -78,13 +78,7 @@ const Navbar = () => {
               Lost & Found Items Pages
             </NavLink>
           </li>
-          <li>
-            <input
-              type="text"
-              placeholder="Search items..."
-              className="input input-bordered input-sm"
-            />
-          </li>
+          
         </ul>
       </div>
 
