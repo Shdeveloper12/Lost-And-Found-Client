@@ -5,8 +5,8 @@ import faqanimation from "../assets/lotties/faq.json";
 const FaqSection = () => {
   return (
     <>
-      <div className="text-center font-bold mt-12 text-3xl">
-        <h1 className="text-orange-500">How it Works</h1>
+      <div className="text-center font-bold mt-12 text-2xl">
+        <h1 className="">How it Works</h1>
       </div>
       <div className="mx-5 mb-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5">
         <div className="space-y-5 mt-8">
@@ -50,7 +50,7 @@ const FaqSection = () => {
           </div>
         </div>
 
-        <div className="ml-0  md:ml-26 lg:ml-32">
+        <div className="ml-0  md:ml-26 lg:ml-38">
           <Lottie
             style={{ width: "400px" }}
             animationData={faqanimation}

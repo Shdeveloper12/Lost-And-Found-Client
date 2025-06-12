@@ -69,7 +69,7 @@ const UpdateLostAndFound = () => {
 
   return (
     <div className="p-8 md:p-24">
-      <h1 className="text-center mb-14 text-3xl text-orange-500 font-bold">
+      <h1 className="text-center mb-14 text-2xl  font-bold">
         Update Lost or Found Item
       </h1>
 

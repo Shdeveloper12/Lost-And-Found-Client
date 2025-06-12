@@ -34,7 +34,7 @@ const LostAndFoundPages = () => {
 
   return (
     <div>
-      <h1 className="text-center my-8 text-3xl font-bold text-orange-500">
+      <h1 className="text-center my-8 text-2xl font-bold ">
         All Lost And Found Items
       </h1>
 

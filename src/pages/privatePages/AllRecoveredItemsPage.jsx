@@ -30,7 +30,7 @@ const MyRecoveredPosts = () => {
 
   return (
     <div className="p-6 max-w-6xl mx-auto">
-      <h2 className="text-3xl font-bold mb-6 text-center text-orange-500">
+      <h2 className="text-2xl font-bold mb-6 text-center ">
         My Recovered Posts
       </h2>
 

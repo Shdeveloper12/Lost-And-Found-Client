@@ -97,8 +97,8 @@ const AddLostAndFound = () => {
   };
 
   return (
-    <div className="p-8 md:p-24">
-      <h1 className="text-center mb-14 text-3xl text-orange-500 font-bold">
+    <div className="p-8 ">
+      <h1 className="text-center mb-14 text-2xl  font-bold">
         Post a Lost or Found Item
       </h1>
 

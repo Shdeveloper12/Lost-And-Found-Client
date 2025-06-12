@@ -112,7 +112,7 @@ const PostDetailsPages = () => {
           className="rounded w-full h-full object-cover p-5"
         />
         <div className=" space-y-2 px-8 pb-5">
-          <h1 className="text-3xl font-bold mb-3">{title}</h1>
+          <h1 className="text-2xl font-bold mb-3">{title}</h1>
           <p>
             <strong className="font-semibold">Type:</strong> {types}
           </p>

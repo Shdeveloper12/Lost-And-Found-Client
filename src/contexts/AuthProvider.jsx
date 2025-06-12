@@ -25,7 +25,7 @@ const AuthProvider = ({ children }) => {
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                const defaultPhoto = photoURL || 'https://img.icons8.com/color/96/000000/user.png';
+                const defaultPhoto = photoURL;
                 return updateProfile(userCredential.user, {
                     displayName: name,
                     photoURL: defaultPhoto

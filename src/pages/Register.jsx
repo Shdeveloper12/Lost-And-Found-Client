@@ -20,7 +20,7 @@ const Register = () => {
     e.preventDefault();
     const form = e.currentTarget;
     const name = form.name.value;
-    const photoURL = form.photo.value || "https://i.ibb.co/yP0zF9N/user.png";
+    const photoURL = form.photo.value;
     const email = form.email.value;
     const password = form.password.value;
 
@@ -80,7 +80,7 @@ const Register = () => {
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl" >
 
        
-        <h1 className="text-center mt-5 font-bold text-3xl">Register Now</h1>
+        <h1 className="text-center mt-5 font-bold text-2xl">Register Now</h1>
         <div className="card-body">
           <form onSubmit={handleRegister}>
             <label className="label">Name</label>
