@@ -1,12 +1,13 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router";
-import registerlottie from "../assets/lotties/animation1.json"
+import registerlottie from "../assets/lotties/animation1.json";
 import { updateProfile } from "firebase/auth";
 import toast, { Toaster } from "react-hot-toast";
 import Swal from "sweetalert2";
 import { Eye, EyeOff } from "lucide-react";
-import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../contexts/AuthProvider";
 import Lottie from "lottie-react";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
   const { createUser } = useContext(AuthContext);
@@ -34,6 +35,16 @@ const Register = () => {
     }
     if (password.length < 6) {
       toast.error("Password must be at least 6 characters");
+      return;
+    }
+    if (!/\d/.test(password)) {
+      toast.error("Password must contain at least one number");
+      return;
+    }
+    if (!/[!@#$%^&*]/.test(password)) {
+      toast.error(
+        "Password must contain at least one special character (!@#$...)"
+      );
       return;
     }
 
@@ -65,86 +76,88 @@ const Register = () => {
   };
 
   return (
-    <div className="hero bg-base-200 min-h-screen">
-      <Toaster />
+    <>
+      <Helmet>
+        <title className="primary">Register | Lost & Found</title>
+      </Helmet>
+      <div className="hero bg-base-200 min-h-screen">
+        <Toaster />
 
+        <div className="hero-content flex-col lg:flex-row-reverse">
+          <Lottie
+            style={{ width: "350px" }}
+            animationData={registerlottie}
+            loop={true}
+          ></Lottie>
+          <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+            <h1 className="text-center mt-5 font-bold text-2xl primary">
+              Register Now
+            </h1>
+            <div className="card-body">
+              <form onSubmit={handleRegister}>
+                <label className="label secondary">Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  className="input input-bordered"
+                  placeholder="Your Name"
+                  required
+                />
 
-      <div className="hero-content flex-col lg:flex-row-reverse">
-        <Lottie
-          style={{width: "350px"}}
-          animationData={registerlottie}
-          loop = {true}
-        >
+                <label className="label secondary">Photo URL</label>
+                <input
+                  type="url"
+                  name="photo"
+                  className="input input-bordered"
+                  placeholder="Photo URL"
+                />
 
-        </Lottie>
-        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl" >
+                <label className="label secondary">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  className="input input-bordered"
+                  placeholder="Email"
+                  required
+                />
 
-       
-        <h1 className="text-center mt-5 font-bold text-2xl">Register Now</h1>
-        <div className="card-body">
-          <form onSubmit={handleRegister}>
-            <label className="label">Name</label>
-            <input
-              type="text"
-              name="name"
-              className="input input-bordered"
-              placeholder="Your Name"
-              required
-            />
+                <label className="label secondary">Password</label>
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    className="input input-bordered w-80 pr-10"
+                    placeholder="Password"
+                    required
+                  />
+                  <span
+                    className="absolute right-8 top-1/2 transform -translate-y-1/2 cursor-pointer text-gray-500"
+                    onClick={togglePassword}
+                  >
+                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                  </span>
+                </div>
 
-            <label className="label">Photo URL</label>
-            <input
-              type="url"
-              name="photo"
-              className="input input-bordered"
-              placeholder="Photo URL"
-            />
+                <p className="text-sm mt-2 secondary">
+                  Already have an account?{" "}
+                  <Link to="/login" className="text-blue-600 underline">
+                    Login Now
+                  </Link>
+                </p>
 
-            <label className="label">Email</label>
-            <input
-              type="email"
-              name="email"
-              className="input input-bordered"
-              placeholder="Email"
-              required
-            />
-
-            <label className="label">Password</label>
-            <div className="relative">
-              <input
-                type={showPassword ? "text" : "password"}
-                name="password"
-                className="input input-bordered w-80 pr-10"
-                placeholder="Password"
-                required
-              />
-              <span
-                className="absolute right-8 top-1/2 transform -translate-y-1/2 cursor-pointer text-gray-500"
-                onClick={togglePassword}
-              >
-                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-              </span>
+                <button
+                  type="submit"
+                  className="btn btn-neutral w-full mt-4 primary"
+                  disabled={loading}
+                >
+                  {loading ? "Registering..." : "Register"}
+                </button>
+              </form>
             </div>
-
-            <p className="text-sm mt-2">
-              Already have an account?{" "}
-              <Link to="/login" className="text-blue-600 underline">
-                Login Now
-              </Link>
-            </p>
-
-            <button
-              type="submit"
-              className="btn btn-neutral w-full mt-4"
-              disabled={loading}
-            >
-              {loading ? "Registering..." : "Register"}
-            </button>
-          </form>
+          </div>
         </div>
-         </div>
       </div>
-    </div>
+    </>
   );
 };
 

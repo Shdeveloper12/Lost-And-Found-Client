@@ -25,12 +25,12 @@ const AllPostCard = ({ post }) => {
           <img src={imageurl} alt="Shoes" className=" w-100 h-70" />
         </figure>
         <div className=" items-center text-center">
-          <h2 className=" text-lg mb-2">
-            <span className="font-bold primary">Title:</span> {title}
+          <h2 className=" text-lg mb-2 primary">
+            <span className="font-bold  ">Title:</span> {title}
           </h2>
-            <p><strong className="font-bold">Date: </strong>{date}</p>
+            <p className="secondary"><strong className="font-bold ">Date: </strong>{date}</p>
           <div className="p-5">
-            <button className="btn  secondary">
+            <button className="btn primary">
               <Link to={`/postdetails/${_id}`}>See Details</Link>{" "}
             </button>
           </div>

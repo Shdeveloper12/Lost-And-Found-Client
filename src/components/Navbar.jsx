@@ -1,15 +1,16 @@
 import React, { useContext } from "react";
 import img1 from "../assets/lost and found logo.png";
 import { Link, NavLink, } from "react-router";
-import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../contexts/AuthProvider";
+
 
 const Navbar = () => {
-  const { user, signOutUser } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
   
 
   const handleSignOut = () => {
     if (window.confirm("Are you sure you want to sign out?")) {
-      signOutUser()
+      logout()
        
         .then(() => console.log("Sign out successfully"))
        
@@ -47,12 +48,12 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
           >
-            <li>
+            <li className="primary">
               <NavLink to="/" className={activeButton}>
                 Home
               </NavLink>
             </li>
-            <li>
+            <li className="primary">
               <NavLink to="/lostandfound" className={activeButton}>
                 Lost & Found Items Page
               </NavLink>
@@ -60,7 +61,7 @@ const Navbar = () => {
           </ul>
         </div>
         <img className="w-14" src={img1} alt="Lost and Found logo" />
-        <span className="text-orange-400 text-xl font-bold ml-2">
+        <span className="text-orange-400 text-xl font-bold ml-2 primary">
           Lost and Found
         </span>
       </div>
@@ -68,12 +69,12 @@ const Navbar = () => {
       
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 items-center space-x-4">
-          <li>
+          <li className="primary">
             <NavLink to="/" className={activeButton}>
               Home
             </NavLink>
           </li>
-          <li>
+          <li className="primary">
             <NavLink to="/lostandfound" className={activeButton}>
               Lost & Found Items Pages
             </NavLink>
@@ -96,8 +97,7 @@ const Navbar = () => {
                 <div className="w-10 rounded-full overflow-hidden border border-gray-300">
                   <img
                     src={
-                      user?.photoURL ||
-                      "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                      user?.photoURL
                     }
                     alt="user avatar"
                   />
@@ -114,15 +114,15 @@ const Navbar = () => {
                 tabIndex={0}
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow z-10"
               >
-                <li>
+                <li className="primary">
                   <NavLink to="/addlostandfounditemspage">
                     Add Lost & Found Item Page
                   </NavLink>
                 </li>
-                <li>
+                <li className="primary">
                   <NavLink to="/allrecovered">All Recovered Items Page</NavLink>
                 </li>
-                <li>
+                <li className="primary">
                   <NavLink to="/manageitem">Manage My Items Page</NavLink>
                 </li>
               </ul>
@@ -130,13 +130,13 @@ const Navbar = () => {
 
             <button
               onClick={handleSignOut}
-              className="btn btn-outline btn-error"
+              className="btn btn-outline btn-error primary"
             >
               Log Out
             </button>
           </>
         ) : (
-          <Link className="btn btn-outline btn-success" to="/login">
+          <Link className="btn btn-outline btn-success  primary" to="/login">
             Login
           </Link>
         )}

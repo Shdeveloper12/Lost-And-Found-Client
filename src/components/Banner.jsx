@@ -8,7 +8,7 @@ import img3 from "../assets/banner/reconnect.jpg";
 
 import "swiper/css";
 import "swiper/css/pagination";
-import "swiper/css/effect-fade"; // ✅ Required for fade effect
+import "swiper/css/effect-fade"; 
 
 const slides = [
   {
@@ -41,7 +41,7 @@ const Banner = () => {
         modules={[Autoplay, Pagination, EffectFade]}
         autoplay={{ delay: 4000, disableOnInteraction: false }}
         pagination={{ clickable: true }}
-        effect="fade" // ✅ Add fade effect here
+        effect="fade" 
         fadeEffect={{ crossFade: true }}
         loop={true}
         className="h-[400px] w-full"
@@ -53,13 +53,13 @@ const Banner = () => {
               style={{ backgroundImage: `url(${slide.image})` }}
             >
               <div className="bg-black bg-opacity-60 p-6 rounded-xl text-center max-w-xl">
-                <h2 className="text-4xl font-bold mb-2 text-green-400">
+                <h2 className="text-4xl font-bold mb-2 text-green-400 primary">
                   {slide.title}
                 </h2>
-                <p className="mb-4">{slide.description}</p>
+                <p className="mb-4 secondary">{slide.description}</p>
                 <Link
                   to={slide.link}
-                  className="inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-5 py-2 rounded-full transition duration-300"
+                  className="inline-block primary bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-5 py-2 rounded-full transition duration-300"
                 >
                   {slide.buttonText}
                 </Link>

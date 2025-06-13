@@ -11,7 +11,7 @@ const LatestFindAndLost = () => {
 
   return (
     <div className="p-5">
-      <h1 className="text-center font-bold  text-3xl my-12">
+      <h1 className="text-center font-bold  text-3xl my-12 primary">
         Latest Lost and Found Posts
       </h1>
 
@@ -22,7 +22,7 @@ const LatestFindAndLost = () => {
       </div>
 
       <div className="text-center mt-5">
-        <Link to="/lostandfound" className="btn btn-outline btn-info">
+        <Link to="/lostandfound" className="btn btn-outline btn-info primary">
           View All Post
         </Link>
       </div>

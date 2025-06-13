@@ -5,8 +5,9 @@ import {
   useNavigate,
   useNavigation,
 } from "react-router";
-import { AuthContext } from "../../contexts/AuthContext";
+import { AuthContext } from "../../contexts/AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const PostDetailsPages = () => {
   const post = useLoaderData();
@@ -25,7 +26,7 @@ const PostDetailsPages = () => {
 
   if (!post) {
     return (
-      <div className="text-red-500 text-center font-bold text-4xl">
+      <div  className="text-red-500 text-center font-bold text-4xl secondary">
         Post details not found
       </div>
     );
@@ -82,6 +83,7 @@ const PostDetailsPages = () => {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify(recoveryData),
       });
 
@@ -104,6 +106,10 @@ const PostDetailsPages = () => {
   };
 
   return (
+    <>
+    <Helmet>
+        <title className="primary">Post Details | Lost & Found</title>
+      </Helmet>
     <div className="p-16">
       <div className="bg-gradient-to-r from-orange-300 from-10% via-red-300 via-30% to-orange-300 to-90% max-w-3xl mx-auto  shadow-2xl rounded-xl">
         <img
@@ -112,26 +118,26 @@ const PostDetailsPages = () => {
           className="rounded w-full h-full object-cover p-5"
         />
         <div className=" space-y-2 px-8 pb-5">
-          <h1 className="text-2xl font-bold mb-3">{title}</h1>
-          <p>
-            <strong className="font-semibold">Type:</strong> {types}
+          <h1 className="text-2xl font-bold mb-3 primary">{title}</h1>
+          <p className="secondary">
+            <strong className="font-semibold ">Type:</strong> {types}
           </p>
-          <p>
+          <p className="secondary">
             <strong className="font-semibold">Name:</strong> {name}
           </p>
-          <p>
+          <p className="secondary">
             <strong className="font-semibold">Email:</strong> {email}
           </p>
-          <p>
+          <p className="secondary">
             <strong className="font-semibold">Location:</strong> {location}
           </p>
-          <p>
+          <p className="secondary">
             <strong className="font-semibold">Category:</strong> {category}
           </p>
-          <p>
+          <p className="secondary">
             <strong className="font-semibold">Date:</strong> {date}
           </p>
-          <p>
+          <p className="secondary">
             <strong className="font-semibold">Description:</strong>{" "}
             {description}
           </p>
@@ -141,7 +147,7 @@ const PostDetailsPages = () => {
               <div className="flex justify-center">
                 <button
                   onClick={() => setShowModal(true)}
-                  className="btn btn-info mt-4 "
+                  className="btn btn-info mt-4 primary"
                 >
                   Found This
                 </button>
@@ -154,7 +160,7 @@ const PostDetailsPages = () => {
               <div className="flex justify-center">
                 <button
                   onClick={() => setShowModal(true)}
-                  className="btn btn-success flex justify-center mt-4"
+                  className="btn btn-success flex justify-center mt-4 primary"
                 >
                   This is Mine
                 </button>
@@ -168,12 +174,12 @@ const PostDetailsPages = () => {
       {showModal && (
         <div className="fixed inset-0 z-50 bg-green-200 bg-opacity-50 flex items-center justify-center">
           <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg relative">
-            <h2 className="text-xl font-bold mb-4 text-center">
+            <h2 className="text-xl font-bold mb-4 text-center primary">
               Recovery Confirmation
             </h2>
             <form onSubmit={handleSubmit}>
               <div className="mb-2">
-                <label className="block mb-1 font-medium">
+                <label className="block mb-1 font-medium secondary">
                   Recovered Location
                 </label>
                 <input
@@ -184,7 +190,7 @@ const PostDetailsPages = () => {
                 />
               </div>
               <div className="mb-2">
-                <label className="block mb-1 font-medium">Recovered Date</label>
+                <label className="block mb-1 font-medium secondary">Recovered Date</label>
                 <input
                   type="date"
                   name="recoveredDate"
@@ -193,28 +199,28 @@ const PostDetailsPages = () => {
                 />
               </div>
               <div className="mb-2">
-                <label className="block mb-1 font-medium">Your Info</label>
+                <label className="block mb-1 font-medium secondary">Your Info</label>
                 <input
                   type="text"
                   value={user?.displayName}
                   readOnly
-                  className="input input-bordered w-full mb-2"
+                  className="input input-bordered w-full mb-2 secodary"
                 />
                 <input
                   type="email"
                   value={user?.email}
                   readOnly
-                  className="input input-bordered w-full mb-2"
+                  className="input input-bordered w-full mb-2 secondary"
                 />
               </div>
               <div className="flex justify-between mt-4">
-                <button type="submit" className="btn btn-success">
+                <button type="submit" className="btn btn-success primary">
                   Submit
                 </button>
                 <button
                   onClick={() => setShowModal(false)}
                   type="button"
-                  className="btn btn-outline"
+                  className="btn btn-outline primary"
                 >
                   Cancel
                 </button>
@@ -224,6 +230,8 @@ const PostDetailsPages = () => {
         </div>
       )}
     </div>
+    </>
+    
   );
 };
 

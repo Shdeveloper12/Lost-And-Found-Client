@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { useLoaderData, useNavigation } from "react-router";
 import AllPostCard from "./AllPostCard";
+import { Helmet } from "react-helmet-async";
 
 const LostAndFoundPages = () => {
   const initialPosts = useLoaderData();
@@ -33,12 +34,16 @@ const LostAndFoundPages = () => {
   }
 
   return (
+    <>
+    <Helmet>
+        <title className="primary">Lost and Found Items | Lost & Found</title>
+      </Helmet>
     <div>
-      <h1 className="text-center my-8 text-2xl font-bold ">
+      <h1 className="text-center my-8 text-2xl font-bold primary">
         All Lost And Found Items
       </h1>
 
-      {/* 🔍 Search Input */}
+      {/* Search Input */}
       <div className="text-center mb-6">
         <input
           type="text"
@@ -50,7 +55,7 @@ const LostAndFoundPages = () => {
       </div>
 
       {filteredPosts.length === 0 ? (
-        <div className="text-center text-xl text-gray-500">
+        <div className="text-center text-xl text-gray-500 secondary">
           No matching posts found.
         </div>
       ) : (
@@ -65,6 +70,8 @@ const LostAndFoundPages = () => {
         </div>
       )}
     </div>
+    </>
+    
   );
 };
 

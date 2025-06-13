@@ -1,21 +1,24 @@
 import { StrictMode, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import { createBrowserRouter, RouterProvider } from "react-router";
+
+import { createBrowserRouter, RouterProvider } from "react-router"; 
 import Home from "./pages/Home.jsx";
 import Root from "./routes/Root.jsx";
 import Error from "./pages/Error.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
-import AuthProvider from "./contexts/AuthProvider.jsx";
+
+import AuthProvider from "./contexts/AuthProvider.jsx"; 
 import { ToastContainer } from "react-toastify";
 import PrivateRoute from "./pages/privatePages/PrivateRoutes.jsx";
 import AddLostAndFound from "./pages/privatePages/AddLostAndFound.jsx";
 import AllRecoveredItemsPage from "./pages/privatePages/AllRecoveredItemsPage.jsx";
-import ManageMyItemsPage from "./pages/privatePages/ManageMyItemsPage.jsx";
+import ManageMyItems from "./pages/privatePages/ManageMyItems.jsx";
 import PostDetailsPages from "./pages/privatePages/PostDetailsPages.jsx";
 import LostAndFoundPages from "./pages/lostAndFoundPages.jsx";
 import UpdateLostAndFound from "./pages/privatePages/UpdateItemsPage.jsx";
+import { HelmetProvider } from "react-helmet-async";
 
 
 const loadPostById = async ({params}) =>{
@@ -70,7 +73,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/manageitem",
-        element:<PrivateRoute><ManageMyItemsPage></ManageMyItemsPage></PrivateRoute>,
+        element:<PrivateRoute><ManageMyItems></ManageMyItems></PrivateRoute>,
       },
     ],
   },
@@ -78,11 +81,11 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <ToastContainer position="top-center" />
-    <AuthProvider>
-      <Suspense fallback={<div className="text-center mt-10">Loading...</div>}>
+    <HelmetProvider>
+      <AuthProvider>
+        <ToastContainer position="top-center" />
         <RouterProvider router={router} />
-      </Suspense>
-    </AuthProvider>
+      </AuthProvider>
+    </HelmetProvider>
   </StrictMode>
 );

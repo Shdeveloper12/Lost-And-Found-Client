@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../contexts/AuthProvider";
 import Swal from "sweetalert2";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -12,34 +12,85 @@ const UserReviewSection = () => {
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
 
-  const fetchReviews = async () => {
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/reviews`);
-    const data = await res.json();
+  
+  const callApi = async (url, options = {}) => {
+    try {
+      const res = await fetch(url, {
+        ...options,
+        credentials: "include",
+      });
 
-    // Sort by newest
-    const sorted = data.sort(
-      (a, b) =>
-        new Date(b._id.toString().substring(0, 8) * 1000) -
-        new Date(a._id.toString().substring(0, 8) * 1000)
-    );
+      if (res.status === 401 || res.status === 403) {
+        const errorData = await res.json();
+        Swal.fire({
+          icon: "error",
+          title: "Authentication Error",
+          text: errorData.message || "Please log in again.",
+        });
+        
+        throw new Error("Authentication failed"); 
+      }
 
-    setReviews(sorted);
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.message || "Failed to process request.");
+      }
 
-    const existing = user ? sorted.find((rev) => rev.email === user.email) : null;
-    if (existing) {
-      setUserReview(existing);
-      setDescription(existing.description);
+      return res.json();
+    } catch (error) {
+      console.error("API Call Error:", error);
+    if (!error.message.includes("Authentication failed")) {
+        Swal.fire("Error", error.message || "Something went wrong!", "error");
+      }
+      throw error;
     }
+  };
 
-    setLoading(false);
+  const fetchReviews = async () => {
+    setLoading(true); 
+    try {
+     
+      const data = await callApi(`${import.meta.env.VITE_API_URL}/reviews`);
+
+    
+      const sorted = data.sort(
+        (a, b) =>
+          new Date(b._id.toString().substring(0, 8) * 1000) -
+          new Date(a._id.toString().substring(0, 8) * 1000)
+      );
+
+      setReviews(sorted);
+
+      const existing = user
+        ? sorted.find((rev) => rev.email === user.email)
+        : null;
+      if (existing) {
+        setUserReview(existing);
+        setDescription(existing.description);
+      } else {
+        setUserReview(null); 
+        setDescription(""); 
+      }
+    } catch (err) {
+      console.error("Failed to fetch reviews:", err);
+      
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
+   
     fetchReviews();
-  }, [user]);
+  }, [user]); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!user) {
+      Swal.fire("Error", "You must be logged in to submit a review.", "error");
+      return;
+    }
+
     const reviewData = {
       email: user.email,
       name: user.displayName,
@@ -48,9 +99,10 @@ const UserReviewSection = () => {
     };
 
     try {
-      let res;
+      let resData;
       if (userReview) {
-        res = await fetch(
+        // Update existing review
+        resData = await callApi(
           `${import.meta.env.VITE_API_URL}/reviews/${userReview._id}`,
           {
             method: "PUT",
@@ -59,38 +111,42 @@ const UserReviewSection = () => {
           }
         );
       } else {
-        res = await fetch(`${import.meta.env.VITE_API_URL}/reviews`, {
+        // Post new review
+        resData = await callApi(`${import.meta.env.VITE_API_URL}/reviews`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(reviewData),
         });
       }
 
-      if (res.ok) {
+      // Check for success acknowledge from backend
+      if ((resData && resData.acknowledged) || resData.success) {
+       
         Swal.fire({
           icon: "success",
           title: userReview ? "Review updated!" : "Review submitted!",
         });
         setShowForm(false);
-        fetchReviews();
+        fetchReviews(); 
       } else {
-        throw new Error("Submission failed");
+        
+        Swal.fire("Error", "Review submission failed acknowledged.", "error");
       }
     } catch (err) {
-      console.error(err);
-      Swal.fire("Error", "Something went wrong!", "error");
+     
+      console.error("Review submission error:", err);
     }
   };
 
-  if (loading) return <div className="text-center">Loading...</div>;
+  if (loading) return <div className="text-center">Loading reviews...</div>; 
 
   return (
-    <div className="p-6 bg-base-100 rounded shadow mb-8 mt-16">
-      <h2 className="text-2xl font-bold text-center  mb-6">
+    <div className="p-6 bg-base-100 rounded shadow mb-8 md:mx-5 mt-16">
+      <h2 className="text-2xl font-bold text-center mb-6 primary">
         What Our Users Say
       </h2>
 
-      {/* Reviews */}
+      {/* Reviews Carousel */}
       {reviews.length > 0 ? (
         <Carousel
           showThumbs={false}
@@ -107,24 +163,20 @@ const UserReviewSection = () => {
               } bg-gradient-to-r from-orange-300 via-red-300 to-orange-300`}
             >
               <div className="flex justify-center mb-3">
-                <div className="w-24 bg-orange-200 rounded-full p-2">
-                  <img
-                    src={r.photo}
-                    alt="user"
-                    className="h-22 rounded-full"
-                  />
+                <div className="w-24 bg-orange-300 rounded-full p-2">
+                  <img src={r.photo} alt="user" className="h-22 rounded-full" />
                 </div>
               </div>
               <div>
-                <p className="font-semibold">{r.name}</p>
-                <p className="text-sm text-gray-600">{r.email}</p>
+                <p className="font-semibold primary">{r.name}</p>
+                <p className="text-sm text-gray-600 secondary">{r.email}</p>
               </div>
-              <p className="text-gray-700 mb-3">{r.description}</p>
+              <p className="text-gray-700 mb-3 secondary">{r.description}</p>
             </div>
           ))}
         </Carousel>
       ) : (
-        <p className="text-center text-gray-500 text-xl font-semibold">
+        <p className="text-center text-gray-500 text-xl font-semibold primary">
           No Review Yet Now
         </p>
       )}
@@ -135,7 +187,7 @@ const UserReviewSection = () => {
           {!showForm ? (
             <button
               onClick={() => setShowForm(true)}
-              className="btn btn-outline btn-warning"
+              className="btn btn-outline btn-warning primary"
             >
               {userReview ? "Edit My Review" : "Write a Review"}
             </button>
@@ -158,7 +210,7 @@ const UserReviewSection = () => {
                   <button
                     type="button"
                     onClick={() => setShowForm(false)}
-                    className="btn btn-outline btn-error"
+                    className="btn btn-outline btn-error primary"
                   >
                     Cancel
                   </button>

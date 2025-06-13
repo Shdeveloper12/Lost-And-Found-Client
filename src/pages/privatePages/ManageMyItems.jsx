@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
-import { AuthContext } from "../../contexts/AuthContext";
+import { AuthContext } from "../../contexts/AuthProvider";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
+import { Helmet } from "react-helmet-async";
 
 const ManageMyItems = () => {
   const { user } = useContext(AuthContext);
@@ -41,6 +42,7 @@ const ManageMyItems = () => {
         `${import.meta.env.VITE_API_URL}/lostandfounditems/${id}`,
         {
           method: "DELETE",
+           credentials: "include",
         }
       );
 
@@ -66,31 +68,35 @@ const ManageMyItems = () => {
   }
 
   return (
+    <>
+    <Helmet>
+        <title className="primary">Manage My Post | Lost & Found</title>
+      </Helmet>
     <div className="p-6 max-w-6xl mx-auto mb-12">
-      <h2 className="text-2xl font-bold mb-6 text-center ">Manage My Items</h2>
+      <h2 className="text-2xl font-bold mb-6 text-center primary">Manage My Items</h2>
 
       {/* Filter by date */}
       <div className="mb-4 text-center mt-12">
-        <label className="font-semibold mr-2">Filter by Date:</label>
+        <label className="font-semibold mr-2 secondary">Filter by Date:</label>
         <input
           type="date"
           value={filterDate}
           onChange={(e) => setFilterDate(e.target.value)}
           className="input input-bordered input-sm"
         />
-        <button onClick={() => setFilterDate("")} className="btn btn-sm ml-2">
+        <button onClick={() => setFilterDate("")} className="btn btn-sm ml-2 primary">
           Clear
         </button>
       </div>
 
       {/* Table */}
       {filteredPosts.length === 0 ? (
-        <p className="text-center text-gray-500">No posts found.</p>
+        <p className="text-center text-gray-500 secondary">No posts found.</p>
       ) : (
         <div className="overflow-x-auto">
           <table className="table w-full border border-base-200">
             <thead className="bg-base-200">
-              <tr>
+              <tr className="primary">
                 <th>#</th>
                 <th>Title</th>
                 <th>Type</th>
@@ -100,21 +106,21 @@ const ManageMyItems = () => {
             </thead>
             <tbody>
               {filteredPosts.map((item, index) => (
-                <tr key={item._id}>
-                  <td>{index + 1}</td>
-                  <td>{item.title}</td>
-                  <td>{item.types}</td>
-                  <td>{item.date}</td>
+                <tr  key={item._id}>
+                  <td className="secodary">{index + 1}</td>
+                  <td className="secondary">{item.title}</td>
+                  <td className="secondary">{item.types}</td>
+                  <td className="secondary">{item.date}</td>
                   <td className="space-x-2">
                     <button
                       onClick={() => handleUpdateRedirect(item._id)}
-                      className="btn btn-sm btn-success"
+                      className="btn btn-sm btn-success primary"
                     >
                       Update
                     </button>
                     <button
                       onClick={() => handleDelete(item._id)}
-                      className="btn btn-sm btn-error"
+                      className="btn btn-sm btn-error primary"
                     >
                       Delete
                     </button>
@@ -126,6 +132,8 @@ const ManageMyItems = () => {
         </div>
       )}
     </div>
+    </>
+    
   );
 };
 

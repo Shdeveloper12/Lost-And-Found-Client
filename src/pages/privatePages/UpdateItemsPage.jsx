@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
-import { AuthContext } from "../../contexts/AuthContext";
+import { AuthContext } from "../../contexts/AuthProvider";
 import Swal from "sweetalert2";
 import MiniMapPicker from "../../components/MiniMapPicker";
+import { Helmet } from "react-helmet-async";
 
 
 const UpdateLostAndFound = () => {
@@ -51,6 +52,7 @@ const UpdateLostAndFound = () => {
       headers: {
         "Content-Type": "application/json",
       },
+       credentials: "include",
       body: JSON.stringify(updatePost),
     })
       .then((res) => res.json())
@@ -68,15 +70,19 @@ const UpdateLostAndFound = () => {
   if (loading) return <p className="text-center mt-20">Loading...</p>;
 
   return (
+    <>
+    <Helmet>
+        <title className="primary">Update Post | Lost & Found</title>
+      </Helmet>
     <div className="p-8 md:p-24">
-      <h1 className="text-center mb-14 text-2xl  font-bold">
+      <h1 className="text-center mb-14 text-2xl  font-bold primary">
         Update Lost or Found Item
       </h1>
 
       <form onSubmit={handleUpdate}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <fieldset className="fieldset p-4">
-            <label className="label font-bold text-orange-400">Title</label>
+            <label className="label font-bold text-orange-400 secondary">Title</label>
             <input
               type="text"
               name="title"
@@ -87,7 +93,7 @@ const UpdateLostAndFound = () => {
           </fieldset>
 
           <fieldset className="fieldset p-4">
-            <label className="label font-bold text-orange-400">Image URL</label>
+            <label className="label font-bold text-orange-400 secondary">Image URL</label>
             <input
               type="text"
               name="imageurl"
@@ -98,19 +104,19 @@ const UpdateLostAndFound = () => {
           </fieldset>
 
           <fieldset className="fieldset p-4">
-            <label className="label font-bold text-orange-400">Your Name</label>
+            <label className="label font-bold text-orange-400 secondary">Your Name</label>
             <p className="input w-full">{user?.displayName}</p>
           </fieldset>
 
           <fieldset className="fieldset p-4">
-            <label className="label font-bold text-orange-400">
+            <label className="label font-bold text-orange-400 secondary">
               Your Email
             </label>
             <p className="input w-full">{user?.email}</p>
           </fieldset>
 
           <fieldset className="fieldset p-4">
-            <label className="label font-bold text-orange-400">Date</label>
+            <label className="label font-bold text-orange-400 secondary">Date</label>
             <input
               type="date"
               name="date"
@@ -121,7 +127,7 @@ const UpdateLostAndFound = () => {
           </fieldset>
 
           <fieldset className="fieldset p-4">
-            <label className="label font-bold text-orange-400">
+            <label className="label font-bold text-orange-400 secondary">
               Description
             </label>
             <textarea
@@ -134,12 +140,12 @@ const UpdateLostAndFound = () => {
         </div>
 
         <fieldset className="fieldset rounded-box p-4 col-span-2">
-          <label className="label font-bold text-orange-400">
+          <label className="label font-bold text-orange-400 secondary">
             Update Location on Map
           </label>
           <MiniMapPicker value={coordinates} onChange={setCoordinates} />
           {coordinates && (
-            <p className="mt-2 text-sm text-gray-600">
+            <p className="mt-2 text-sm text-gray-600 secondary">
               Selected: {coordinates.lat.toFixed(5)},{" "}
               {coordinates.lng.toFixed(5)}
             </p>
@@ -149,14 +155,14 @@ const UpdateLostAndFound = () => {
         {/* Dropdowns */}
         <div className="grid grid-cols-2">
           <div className="flex flex-col items-center mt-6">
-            <p className="text-lg font-semibold text-orange-400 mb-2">
+            <p className="text-lg font-semibold text-orange-400 mb-2 secondary">
               Selected Type: <span className="text-blue-700">{types}</span>
             </p>
             <div className="relative">
               <button
                 type="button"
                 onClick={() => setDropdown(!dropdown)}
-                className="btn"
+                className="btn primary"
               >
                 {types ? `Change Type (${types})` : "Select Type"}
               </button>
@@ -170,7 +176,7 @@ const UpdateLostAndFound = () => {
                           setTypes(type);
                           setDropdown(false);
                         }}
-                        className="w-full text-left hover:bg-gray-100 px-2 py-1 rounded"
+                        className="w-full text-left hover:bg-gray-100 px-2 py-1 rounded primary"
                       >
                         {type}
                       </button>
@@ -182,7 +188,7 @@ const UpdateLostAndFound = () => {
           </div>
 
           <div className="flex flex-col items-center mt-6">
-            <p className="text-lg font-semibold text-orange-400 mb-2">
+            <p className="text-lg font-semibold text-orange-400 mb-2 secondary">
               Selected Category:{" "}
               <span className="text-blue-700">{category}</span>
             </p>
@@ -190,12 +196,12 @@ const UpdateLostAndFound = () => {
               <button
                 type="button"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
-                className="btn"
+                className="btn primary"
               >
                 {category ? `Change Category (${category})` : "Select Category"}
               </button>
               {dropdownOpen && (
-                <ul className="absolute top-full mt-2 bg-orange-400 text-black w-52 p-2 shadow-lg rounded-box z-10">
+                <ul className="absolute top-full mt-2 bg-orange-400 text-black w-52 p-2 shadow-lg rounded-box z-10 secondary">
                   {[
                     "Pet",
                     "Documents",
@@ -211,7 +217,7 @@ const UpdateLostAndFound = () => {
                           setCategory(cat);
                           setDropdownOpen(false);
                         }}
-                        className="w-full text-left hover:bg-gray-100 px-2 py-1 rounded"
+                        className="w-full text-left hover:bg-gray-100 px-2 py-1 rounded primary"
                       >
                         {cat}
                       </button>
@@ -227,13 +233,15 @@ const UpdateLostAndFound = () => {
         <div className="flex justify-center">
           <button
             type="submit"
-            className="btn btn-outline btn-success mt-10 rounded-xl w-50"
+            className="btn btn-outline btn-success mt-10 rounded-xl w-50 primary"
           >
             Update Post
           </button>
         </div>
       </form>
     </div>
+    </>
+    
   );
 };
 
