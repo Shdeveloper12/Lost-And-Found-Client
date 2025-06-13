@@ -10,12 +10,12 @@ const LatestFindAndLost = () => {
     .slice(0, 6);
 
   return (
-    <div className="p-5">
+    <div className="p-5 ">
       <h1 className="text-center font-bold  text-3xl my-12 primary">
         Latest Lost and Found Posts
       </h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mx-5 md:mx-5 lg:mx-0">
+      <div className="grid grid-cols-1 hover:cursor-pointer md:grid-cols-2 lg:grid-cols-3 gap-8 mx-5 md:mx-5 lg:mx-0">
         {latestPosts.map((post) => (
           <AllPostCard key={post._id} post={post} />
         ))}

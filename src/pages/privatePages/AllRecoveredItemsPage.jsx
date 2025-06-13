@@ -76,7 +76,7 @@ const MyRecoveredPosts = () => {
         ) : viewMode === "table" ? (
           <div className="overflow-x-auto">
             <table className="table w-full border border-gray-200">
-              <thead className="bg-gray-100">
+              <thead className="bg-base-200">
                 <tr className="primary">
                   <th>#</th>
                   <th>Recovered Location</th>
