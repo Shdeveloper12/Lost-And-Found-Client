@@ -25,7 +25,7 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const defaultPhoto = photoURL || 'https://i.ibb.co/VtW21bW/download.png';
+        const defaultPhoto = photoURL;
         return updateProfile(userCredential.user, {
           displayName: name,
           photoURL: defaultPhoto,
