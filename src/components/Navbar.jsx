@@ -56,7 +56,7 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <img className="w-14" src={img1} alt="Lost and Found logo" />
+        <img className="w-14 " src={img1} alt="Lost and Found logo" />
         <span className="text-orange-400 text-xl font-bold ml-2 primary">
           Lost and Found
         </span>
@@ -86,11 +86,11 @@ const Navbar = () => {
                 role="button"
                 className="btn btn-ghost btn-circle avatar group"
               >
-                <div className="w-10 rounded-full overflow-hidden border border-gray-300">
+                <div className="w-10  rounded-full overflow-hidden border border-gray-300">
                   <img src={user?.photoURL} alt="user avatar" />
                 </div>
 
-                <div className="absolute top-12 left-1/2 -translate-x-1/2 text-sm text-gray-700 bg-white px-2 py-1 rounded shadow opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20 whitespace-nowrap">
+                <div className="absolute top-12 left-1/2 -translate-x-1/2 text-sm text-gray-700 bg-white px-2 py-1 rounded shadow opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10 whitespace-nowrap">
                   {user?.displayName || "User"}
                 </div>
               </div>

@@ -55,7 +55,7 @@ const MyRecoveredPosts = () => {
         </h2>
 
         {/* View Mode Switch */}
-        <div className="flex justify-end mb-4">
+        <div className="flex justify-end mt-10 mb-4">
           <button
             onClick={() => setViewMode("table")}
             className={`btn btn-sm mr-2 ${viewMode === "table" ? "btn-primary" : "btn-outline"}`}

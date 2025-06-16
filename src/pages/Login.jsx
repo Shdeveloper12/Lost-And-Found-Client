@@ -18,7 +18,7 @@ const Login = () => {
 
   const setJwtToken = async (firebaseUser) => {
     const token = await firebaseUser.getIdToken();
-    await fetch("http://localhost:5000/jwt", {
+    await fetch(`${import.meta.env.VITE_API_URL}/jwt`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
