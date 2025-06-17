@@ -172,14 +172,14 @@ const PostDetailsPages = () => {
 
       {/* Modal */}
       {showModal && (
-        <div className="fixed inset-0 z-50 bg-green-200 bg-opacity-50 flex items-center justify-center">
+        <div className="fixed inset-0 z-50 bg-sky-300/50 bg-opacity-50 flex items-center justify-center">
           <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg relative">
-            <h2 className="text-xl font-bold mb-4 text-center primary">
+            <h2 className="text-xl font-bold mb-4 text-center text-blue-500 primary">
               Recovery Confirmation
             </h2>
             <form onSubmit={handleSubmit}>
               <div className="mb-2">
-                <label className="block mb-1 font-medium secondary">
+                <label className="block mb-1 font-medium secondary text-blue-400">
                   Recovered Location
                 </label>
                 <input
@@ -190,7 +190,7 @@ const PostDetailsPages = () => {
                 />
               </div>
               <div className="mb-2">
-                <label className="block mb-1 font-medium secondary">Recovered Date</label>
+                <label className="block mb-1 font-medium secondary text-blue-400">Recovered Date</label>
                 <input
                   type="date"
                   name="recoveredDate"
@@ -199,7 +199,7 @@ const PostDetailsPages = () => {
                 />
               </div>
               <div className="mb-2">
-                <label className="block mb-1 font-medium secondary">Your Info</label>
+                <label className="block mb-1 font-medium secondary text-blue-400">Your Info</label>
                 <input
                   type="text"
                   value={user?.displayName}
@@ -220,7 +220,7 @@ const PostDetailsPages = () => {
                 <button
                   onClick={() => setShowModal(false)}
                   type="button"
-                  className="btn btn-outline primary"
+                  className="btn btn-error"
                 >
                   Cancel
                 </button>
