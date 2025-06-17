@@ -118,7 +118,7 @@ const Login = () => {
             loop={true}
           ></Lottie>
 
-          <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+          <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl mr-12 lg:mr-0 ">
             <div className="card-body">
               <h1 className="text-center mt-5 font-bold text-2xl primary">Login Now</h1>
               <form onSubmit={handleLogin} className="fieldset">

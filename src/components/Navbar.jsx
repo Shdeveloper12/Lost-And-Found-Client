@@ -56,7 +56,7 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <img className="w-14 " src={img1} alt="Lost and Found logo" />
+        <img className="w-14 hidden lg:block" src={img1} alt="Lost and Found logo" />
         <span className="text-orange-400 text-xl font-bold ml-2 primary">
           Lost and Found
         </span>
