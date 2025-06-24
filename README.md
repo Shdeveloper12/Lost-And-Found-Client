@@ -3,7 +3,8 @@
 PURPOSE: " To help people report, find, and recover lost and found items efficiently and securely."
 
 
------------------------------------------------FEATURES-------------------------------------------------
+![](https://github.com/Shdeveloper12/Lost-And-Found-Client/blob/main/lostandfound.jpg.png)
+---------------------------------------------------FEATURES-------------------------------------------------
 
 1. Report Lost Items:
 
