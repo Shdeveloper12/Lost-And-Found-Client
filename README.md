@@ -3,7 +3,7 @@
 PURPOSE: " To help people report, find, and recover lost and found items efficiently and securely."
 
 
------------------------------------------------KEY OBJECTIVES-------------------------------------------------
+-----------------------------------------------FEATURES-------------------------------------------------
 
 1. Report Lost Items:
 
@@ -34,23 +34,61 @@ PURPOSE: " To help people report, find, and recover lost and found items efficie
 6. Theme Personalization:
 
     * Light/dark mode switch for accessibility and preference.
+  
 
 
----------------------------------------------PACKAGES---------------------------------------------------------
-1. npm i react router
-2. npm i firebase
-3. npm i jsonwebtoken cookie-parser
-4. npm i sweetalert2
-5. npm i talwindcss
-6. npm i daisyui
-7. npm i react-icons
-8. npm i react-helmet
-9. npm i swiper
-10. npm i lottie-react
-11. npm i react-leaflet
-12. npm i framer-motion
-13. npm i react-tostify
+---------------------------------------------------TECHNOLOGY STACK----------------------------------------------------
 
+
+# Frontend
+React.js – UI components
+
+React Router – Navigation
+
+Axios – API requests
+
+CSS / Tailwind / Bootstrap – Styling (use your actual choice)
+
+# Backend
+Node.js – Runtime environment
+
+Express.js – RESTful API development
+
+MongoDB + Mongoose – Database and data modeling
+
+# Authentication
+JWT (JSON Web Tokens) – Login/session handling
+
+bcrypt.js – Password encryption
+
+
+# frontend/package.json
+"axios": "^...",
+"react": "^...",
+"react-dom": "^...",
+"react-router-dom": "^...",
+
+
+# backend/package.json
+"express": "^...",
+"mongoose": "^...",
+"bcryptjs": "^...",
+"jsonwebtoken": "^...",
+"cors": "^...",
+"dotenv": "^...",
+"nodemon": "^..."
+
+
+# Run Locally
+1. https://lost-and-found-server-rho.vercel.app/lostandfounditems
+
+2.https://lost-and-found-server-rho.vercel.app/lostandfounditems/:id 
+
+3. https://lost-and-found-server-rho.vercel.app/recovered
+
+
+# Project Live Link
+https://lostandfounds.netlify.app
 
 
 
