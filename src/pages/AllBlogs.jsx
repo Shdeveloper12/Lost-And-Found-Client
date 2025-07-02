@@ -110,7 +110,7 @@ const AllBlogs = () => {
       author: "Shafayet Hosain",
       date: "June 20, 2025",
       image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdub9dB2a4ZBshwsYE3Lr85Hps9V9amyaUoA&sr",
+        "https://media.istockphoto.com/id/2189540556/vector/meet-the-team.jpg?s=612x612&w=0&k=20&c=T0LUYYTp7aXkzhYY22g7vPZ0S5lmo6O15Htzt5i-6lY=",
     },
     {
       id: "12",
