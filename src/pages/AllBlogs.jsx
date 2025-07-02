@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 const AllBlogs = () => {
   const allBlogs = [
     {
@@ -29,7 +30,8 @@ const AllBlogs = () => {
         "Losing something is stressful. Here's a step-by-step plan you should follow right away.",
       author: "Admin",
       date: "June 12, 2025",
-      image: "https://notlost.com/wp-content/uploads/man-showing-distress-3777572-1-1080x675.jpg",
+      image:
+        "https://notlost.com/wp-content/uploads/man-showing-distress-3777572-1-1080x675.jpg",
     },
     {
       id: "4",
@@ -38,7 +40,8 @@ const AllBlogs = () => {
         "Losing a phone can be a nightmare, but quick actions made all the difference.",
       author: "Mahin Khan",
       date: "June 13, 2025",
-      image: "https://www.digitaltrends.com/wp-content/uploads/2015/11/lost-phone.jpg?p=1",
+      image:
+        "https://www.digitaltrends.com/wp-content/uploads/2015/11/lost-phone.jpg?p=1",
     },
     {
       id: "5",
@@ -47,7 +50,8 @@ const AllBlogs = () => {
         "In this digital age, people-powered platforms like Lost & Found are the future.",
       author: "Admin",
       date: "June 14, 2025",
-      image: "https://img.freepik.com/premium-vector/community-care-icons-team-help-illustration_911078-7846.jpg",
+      image:
+        "https://img.freepik.com/premium-vector/community-care-icons-team-help-illustration_911078-7846.jpg",
     },
     {
       id: "6",
@@ -65,7 +69,8 @@ const AllBlogs = () => {
         "Wallets, phones, IDs — here’s what people lose the most and why.",
       author: "Sadia Akter",
       date: "June 16, 2025",
-      image: "https://www.seinxon.com/cdn/shop/articles/14-most-commonly-lost-items_520x500_c34db83c-a994-4491-8b3e-c8df9837b80d.webp?v=1736587944",
+      image:
+        "https://www.seinxon.com/cdn/shop/articles/14-most-commonly-lost-items_520x500_c34db83c-a994-4491-8b3e-c8df9837b80d.webp?v=1736587944",
     },
     {
       id: "8",
@@ -74,7 +79,8 @@ const AllBlogs = () => {
         "Simple reminder habits can help you avoid leaving anything behind.",
       author: "Jannatul Nayeem",
       date: "June 17, 2025",
-      image: "https://www.shutterstock.com/image-photo/check-list-concept-businessman-tick-600nw-2442962431.jpg",
+      image:
+        "https://www.shutterstock.com/image-photo/check-list-concept-businessman-tick-600nw-2442962431.jpg",
     },
     {
       id: "9",
@@ -83,7 +89,8 @@ const AllBlogs = () => {
         "Sometimes it takes a village. Why neighborhoods are key to finding lost items.",
       author: "Admin",
       date: "June 18, 2025",
-      image: "https://img.freepik.com/premium-vector/man-explains-list-rule-guidelines_112255-2204.jpg",
+      image:
+        "https://img.freepik.com/premium-vector/man-explains-list-rule-guidelines_112255-2204.jpg",
     },
     {
       id: "10",
@@ -92,7 +99,8 @@ const AllBlogs = () => {
         "Quick action matters. Here’s what to do in the first hour of losing something.",
       author: "Zarif Ahsan",
       date: "June 19, 2025",
-      image: "https://www.thenet.org/wp-content/uploads/2019/07/blog_frontpage_crying.jpg",
+      image:
+        "https://www.thenet.org/wp-content/uploads/2019/07/blog_frontpage_crying.jpg",
     },
     {
       id: "11",
@@ -101,7 +109,8 @@ const AllBlogs = () => {
         "Get to know the developers and designers making the platform possible.",
       author: "Shafayet Hosain",
       date: "June 20, 2025",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdub9dB2a4ZBshwsYE3Lr85Hps9V9amyaUoA&sr",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdub9dB2a4ZBshwsYE3Lr85Hps9V9amyaUoA&sr",
     },
     {
       id: "12",
@@ -110,62 +119,69 @@ const AllBlogs = () => {
         "Pets are family. Read how real users found their missing furry friends.",
       author: "Arifa Sultana",
       date: "June 21, 2025",
-      image: "https://images.contentstack.io/v3/assets/blt6f84e20c72a89efa/blt220908e216c946ce/64adb1166664b63a3bbf8356/article-how_find_lost_cat-header@1.5x.jpg",
+      image:
+        "https://images.contentstack.io/v3/assets/blt6f84e20c72a89efa/blt220908e216c946ce/64adb1166664b63a3bbf8356/article-how_find_lost_cat-header@1.5x.jpg",
     },
   ];
 
   return (
-    <section className="my-8" id="all-blogs">
-      <div className="max-w-8xl mx-auto px-4 card">
-        <h2 className="text-3xl font-bold text-center mb-10">
-           All Blog Posts
-        </h2>
+    <>
+    <Helmet>
+        <title className="primary">All Blogs | Lost and Found</title>
+    </Helmet>
+      <section className="my-8" id="all-blogs">
+        <div className="max-w-8xl mx-auto px-4 card">
+          <h2 className="text-3xl font-bold text-center mb-10">
+            All Blog Posts
+          </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 p-2">
-          {allBlogs.map((post) => (
-            <motion.div
-              key={post.id}
-              whileHover={{
-                scale: [null, 1, 1.05],
-                transition: {
-                  duration: 0.5,
-                  times: [0, 0.6, 1],
-                  ease: ["easeInOut", "easeOut"],
-                },
-              }}
-              transition={{
-                duration: 0.3,
-                ease: "easeOut",
-              }}
-              className="rounded-2xl shadow-md overflow-hidden hover:cursor-pointer shadow-blue-300"
-            >
-              <img
-                src={post.image}
-                alt={post.title}
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-5">
-                <h3 className="text-xl font-bold mb-1  primary">
-                  {post.title}
-                </h3>
-                <p className="text-gray-600 text-sm secondary">
-                  {post.excerpt}
-                </p>
-                <div className="text-xs text-gray-500 mt-3">
-                  By{" "}
-                  <span className="font-semibold secondary">{post.author}</span>{" "}
-                  · {post.date}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 p-2">
+            {allBlogs.map((post) => (
+              <motion.div
+                key={post.id}
+                whileHover={{
+                  scale: [null, 1, 1.05],
+                  transition: {
+                    duration: 0.5,
+                    times: [0, 0.6, 1],
+                    ease: ["easeInOut", "easeOut"],
+                  },
+                }}
+                transition={{
+                  duration: 0.3,
+                  ease: "easeOut",
+                }}
+                className="rounded-2xl shadow-md overflow-hidden hover:cursor-pointer shadow-blue-300"
+              >
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-5">
+                  <h3 className="text-xl font-bold mb-1  primary">
+                    {post.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm secondary">
+                    {post.excerpt}
+                  </p>
+                  <div className="text-xs text-gray-500 mt-3">
+                    By{" "}
+                    <span className="font-semibold secondary">
+                      {post.author}
+                    </span>{" "}
+                    · {post.date}
+                  </div>
                 </div>
-                
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
         </div>
-      </div>
-      <div className="text-center mt-8">
-                    <h2 className="text-lg text-gray-500">Coming More Blogs Soon....</h2>
-                </div>
-    </section>
+        <div className="text-center mt-8">
+          <h2 className="text-lg text-gray-500">Coming Soon More Blogs.....</h2>
+        </div>
+      </section>
+    </>
   );
 };
 
