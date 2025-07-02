@@ -11,9 +11,13 @@ const Root = () => {
       <Helmet>
         <title>Lost & Found</title>
       </Helmet>
-      <div>
+      <div className="flex flex-col min-h-screen">
         <Navbar></Navbar>
-        <Outlet></Outlet>
+        <main className="flex-grow">
+          <Outlet></Outlet>
+
+        </main>
+       
         <Footer></Footer>
       </div>
     </>

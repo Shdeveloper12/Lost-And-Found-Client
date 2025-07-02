@@ -4,6 +4,7 @@ import LatestFindAndLost from "../components/LatestFindAndLost";
 import FaqSection from "../components/FaqSection";
 import ReviewSection from "../components/ReviewSection";
 import { Helmet } from "react-helmet-async";
+import BlogSection from "../components/BlogSection";
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
         <LatestFindAndLost></LatestFindAndLost>
         <FaqSection></FaqSection>
         <ReviewSection></ReviewSection>
+        <BlogSection></BlogSection>
       </div>
     </>
   );

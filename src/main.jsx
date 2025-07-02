@@ -19,6 +19,7 @@ import PostDetailsPages from "./pages/privatePages/PostDetailsPages.jsx";
 import LostAndFoundPages from "./pages/lostAndFoundPages.jsx";
 import UpdateLostAndFound from "./pages/privatePages/UpdateItemsPage.jsx";
 import { HelmetProvider } from "react-helmet-async";
+import AllBlogs from "./pages/AllBlogs.jsx";
 
 
 const loadPostById = async ({params}) =>{
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
       {
         path: "/addlostandfounditemspage",
         element: <PrivateRoute><AddLostAndFound></AddLostAndFound></PrivateRoute>
+      },
+      {
+        path: "/blogs",
+        element: <AllBlogs></AllBlogs>
       },
       {
         path: "/updatelostandfoundpost/:id",

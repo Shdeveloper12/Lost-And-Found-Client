@@ -21,8 +21,8 @@ const LatestFindAndLost = () => {
         ))}
       </div>
 
-      <div className="text-center mt-5">
-        <Link to="/lostandfound" className="btn btn-outline btn-info primary">
+      <div className="text-center mt-12">
+        <Link to="/lostandfound" className=" bg-blue-600 px-6 py-2 hover:bg-blue-700 transition rounded-full text-white">
           View All Post
         </Link>
       </div>

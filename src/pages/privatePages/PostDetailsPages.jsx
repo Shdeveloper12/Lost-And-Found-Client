@@ -110,14 +110,14 @@ const PostDetailsPages = () => {
     <Helmet>
         <title className="primary">Post Details | Lost & Found</title>
       </Helmet>
-    <div className="p-16">
-      <div className="bg-gradient-to-r from-orange-300 from-10% via-red-300 via-30% to-orange-300 to-90% max-w-3xl mx-auto  shadow-2xl rounded-xl">
+    <div className="p-5">
+      <div className=" max-w-3xl mx-auto shadow-blue-300 shadow-md  overflow-hidden transition ease-in-out rounded-2xl">
         <img
           src={imageurl}
           alt="postImg"
-          className="rounded w-full h-full object-cover p-5"
+          className=" w-full h-90 object-cover "
         />
-        <div className=" space-y-2 px-8 pb-5">
+        <div className=" space-y-2 px-8 p-5">
           <h1 className="text-2xl font-bold mb-3 primary">{title}</h1>
           <p className="secondary">
             <strong className="font-semibold ">Type:</strong> {types}
@@ -147,7 +147,7 @@ const PostDetailsPages = () => {
               <div className="flex justify-center">
                 <button
                   onClick={() => setShowModal(true)}
-                  className="btn btn-info mt-4 primary"
+                  className="btn btn-success mt-4 primary"
                 >
                   Found This
                 </button>
@@ -172,8 +172,8 @@ const PostDetailsPages = () => {
 
       {/* Modal */}
       {showModal && (
-        <div className="fixed inset-0 z-50 bg-sky-300/50 bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg relative">
+        <div className="fixed inset-0 z-50 bg-blue-300/50  flex items-center justify-center">
+          <div className=" p-6 bg-black rounded-lg shadow-blue-300 shadow-lg w-full max-w-lg relative">
             <h2 className="text-xl font-bold mb-4 text-center text-blue-500 primary">
               Recovery Confirmation
             </h2>
@@ -186,6 +186,7 @@ const PostDetailsPages = () => {
                   type="text"
                   name="recoveredLocation"
                   className="input input-bordered w-full"
+                  placeholder="Your Location"
                   required
                 />
               </div>

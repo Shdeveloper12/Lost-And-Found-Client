@@ -114,7 +114,7 @@ const ManageMyItems = () => {
                   <td className="space-x-2">
                     <button
                       onClick={() => handleUpdateRedirect(item._id)}
-                      className="btn btn-sm btn-success primary"
+                      className="btn btn-sm btn-success primary mb-2 lg:mb-0"
                     >
                       Update
                     </button>

@@ -3,11 +3,11 @@ import React from "react";
 import { Link } from "react-router";
 
 const AllPostCard = ({ post }) => {
-  const { _id, imageurl, title, date } = post;
+  const { _id, imageurl, title, date, types } = post;
   return (
     <>
       <motion.div
-        className="card   shadow-xl bg-gradient-to-r from-orange-300 from-10% via-red-300 via-30% to-orange-300 to-90%"
+        className="card shadow-blue-300 rounded-2xl  shadow-md "
         whileHover={{
           scale: [null, 1, 1.05],
           transition: {
@@ -21,16 +21,23 @@ const AllPostCard = ({ post }) => {
           ease: "easeOut",
         }}
       >
-        <figure className="p-5 ">
-          <img src={imageurl} alt="Shoes" className=" w-100 h-70" />
+        <figure className=" ">
+          <img src={imageurl} alt="Shoes" className=" w-full h-70  object-cover"/>
         </figure>
-        <div className=" items-center text-center">
-          <h2 className=" text-lg mb-2 primary">
-            <span className="font-bold  ">Title:</span> {title}
+        <div className=" items-center text-center p-5">
+          <h2 className=" text-lg  primary ">
+            <span className="font-bold text-left secondary">Title:</span> {title}
           </h2>
-            <p className="secondary"><strong className="font-bold ">Date: </strong>{date}</p>
+          <h2 className="text-lg mb-2  primary">
+            <span className="font-bold secondary">Type: </span>
+            {types}
+          </h2>
+          <p className="secondary">
+            <strong className="font-bold ">Date: </strong>
+            {date}
+          </p>
           <div className="p-5">
-            <button className="btn primary">
+            <button className="bg-blue-600 rounded-full px-6 py-2 text-white hover:bg-blue-700">
               <Link to={`/postdetails/${_id}`}>See Details</Link>{" "}
             </button>
           </div>

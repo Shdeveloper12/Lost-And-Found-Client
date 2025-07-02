@@ -142,7 +142,7 @@ const UserReviewSection = () => {
   if (loading) return <div className="text-center">Loading reviews...</div>; 
 
   return (
-    <div className="p-6 bg-base-100 rounded shadow mb-8 md:mx-5 mt-16">
+    <div className="p-6   mb-8 md:mx-5">
       <h2 className="text-2xl font-bold text-center mb-6 primary">
         What Our Users Say
       </h2>
