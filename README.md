@@ -60,8 +60,6 @@ MongoDB + Mongoose – Database and data modeling
 # Authentication
 JWT (JSON Web Tokens) – Login/session handling
 
-bcrypt.js – Password encryption
-
 
 # frontend/package.json
 "axios": "^...",
