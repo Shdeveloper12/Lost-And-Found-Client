@@ -58,13 +58,13 @@ const MyRecoveredPosts = () => {
         <div className="flex justify-end mt-10 mb-4">
           <button
             onClick={() => setViewMode("table")}
-            className={`btn btn-sm mr-2 ${viewMode === "table" ? "btn-primary" : "btn-outline"}`}
+            className={`btn btn-sm mr-2 ${viewMode === "table" ? "bg-orange-400" : "btn-outline"}`}
           >
             <CiViewTable />
           </button>
           <button
             onClick={() => setViewMode("card")}
-            className={`btn btn-sm ${viewMode === "card" ? "btn-primary" : "btn-outline"}`}
+            className={`btn btn-sm ${viewMode === "card" ? "bg-orange-400" : "btn-outline"}`}
           >
             <CiCreditCard1 />
           </button>

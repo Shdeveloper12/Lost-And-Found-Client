@@ -259,7 +259,7 @@ const AddLostAndFound = () => {
           </div>
 
           {/* Submit Button */}
-          <div className="flex justify-center">
+          <div className="flex justify-center mt-6">
             <button
               type="submit"
               className="bg-green-400 px-6 py-2 font-semibold hover:cursor-pointer hover:bg-green-500 transition rounded-md text-white primary"
