@@ -108,7 +108,7 @@ const AddLostAndFound = () => {
         <form onSubmit={handleCreateGroup}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <fieldset className="fieldset rounded-box p-4">
-              <label className="label font-bold text-orange-400 secondary">Title</label>
+              <label className="label font-bold text-gray-600 secondary">Title</label>
               <input
                 type="text"
                 name="title"
@@ -119,7 +119,7 @@ const AddLostAndFound = () => {
             </fieldset>
 
             <fieldset className="fieldset rounded-box p-4">
-              <label className="label font-bold text-orange-400 secondary">
+              <label className="label font-bold text-gray-600 secondary">
                 Image URL
               </label>
               <input
@@ -132,21 +132,21 @@ const AddLostAndFound = () => {
             </fieldset>
 
             <fieldset className="fieldset rounded-box p-4">
-              <label className="label font-bold text-orange-400 secondary">
+              <label className="label font-bold text-gray-600 secondary">
                 Your Name
               </label>
               <p className="input w-full">{user?.displayName}</p>
             </fieldset>
 
             <fieldset className="fieldset rounded-box p-4">
-              <label className="label font-bold text-orange-400 secondary">
+              <label className="label font-bold text-gray-600 secondary">
                 Your Email
               </label>
               <p className="input w-full">{user?.email}</p>
             </fieldset>
 
             <fieldset className="fieldset rounded-box p-4">
-              <label className="label font-bold text-orange-400 secondary">Date</label>
+              <label className="label font-bold text-gray-600 secondary">Date</label>
               <input
                 type="date"
                 name="date"
@@ -155,7 +155,7 @@ const AddLostAndFound = () => {
               />
             </fieldset>
             <fieldset className="fieldset rounded-box p-4"> 
-              <label className="label font-bold text-orange-400 secondary">
+              <label className="label font-bold text-gray-600 secondary">
                 Description
               </label>
               <textarea
@@ -168,12 +168,12 @@ const AddLostAndFound = () => {
           </div>
 
           <fieldset className="fieldset rounded-box p-4 col-span-2">
-            <label className="label font-bold text-orange-400 secondary">
+            <label className="label font-bold text-gray-600 secondary">
               Select Location on the Map
             </label>
             <MiniMapPicker value={coordinates} onChange={setCoordinates} />
             {coordinates && (
-              <p className="mt-2 text-sm text-gray-600 secondary">
+              <p className="mt-2 font-semibold text-gray-600 secondary">
                 Selected: {coordinates.lat.toFixed(5)},{" "}
                 {coordinates.lng.toFixed(5)}
               </p>
@@ -184,8 +184,8 @@ const AddLostAndFound = () => {
           <div className="grid grid-cols-2">
             <div className="flex flex-col items-center mt-6">
               {types && (
-                <p className="text-lg font-semibold text-orange-400 mb-2 secondary">
-                  Selected Type: <span className="text-blue-700">{types}</span>
+                <p className="text-lg font-semibold text-gray-700 mb-2 secondary">
+                  Selected Type: <span className="text-black">{types}</span>
                 </p>
               )}
               <div className="relative">
@@ -197,7 +197,7 @@ const AddLostAndFound = () => {
                   {types ? `Change Type (${types})` : "Select Type"}
                 </button>
                 {dropdown && (
-                  <ul className="absolute top-full mt-2 bg-orange-400 text-black w-52 p-2 shadow-lg rounded-box z-10">
+                  <ul className="absolute top-full mt-2 bg-gray-200 text-black w-52 p-2 shadow-lg rounded-box z-10">
                     {["Lost", "Found"].map((type) => (
                       <li key={type}>
                         <button
@@ -217,9 +217,9 @@ const AddLostAndFound = () => {
             {/* Category Dropdown */}
             <div className="flex flex-col items-center mt-6">
               {category && (
-                <p className="text-lg font-semibold text-orange-400 mb-2 secondary">
+                <p className="text-lg font-semibold text-gray-700 mb-2 secondary">
                   Selected Category:{" "}
-                  <span className="text-blue-700">{category}</span>
+                  <span className="text-black">{category}</span>
                 </p>
               )}
               <div className="relative">
@@ -233,7 +233,7 @@ const AddLostAndFound = () => {
                     : "Select Category"}
                 </button>
                 {dropdownOpen && (
-                  <ul className="absolute top-full mt-2 bg-orange-400 text-black w-52 p-2 shadow-lg rounded-box z-10 secondary">
+                  <ul className="absolute top-full mt-2 bg-gray-200 text-black w-52 p-2 shadow-lg rounded-box z-10 secondary">
                     {[
                       "Pet",
                       "Documents",
@@ -262,7 +262,7 @@ const AddLostAndFound = () => {
           <div className="flex justify-center">
             <button
               type="submit"
-              className="btn btn-outline btn-success mt-10 rounded-xl w-50 primary"
+              className="bg-green-400 px-6 py-2 font-semibold hover:cursor-pointer hover:bg-green-500 transition rounded-md text-white primary"
             >
               Add Post
             </button>
