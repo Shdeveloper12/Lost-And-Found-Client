@@ -188,7 +188,7 @@ const UserReviewSection = () => {
           {!showForm ? (
             <button
               onClick={() => setShowForm(true)}
-              className="btn btn-outline btn-warning primary"
+              className="bg-orange-400 px-6 py-2 font-semibold hover:cursor-pointer hover:bg-orange-500 transition rounded-md text-white"
             >
               {userReview ? "Edit My Review" : "Write a Review"}
             </button>

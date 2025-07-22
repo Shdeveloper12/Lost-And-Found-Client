@@ -22,7 +22,7 @@ const LatestFindAndLost = () => {
       </div>
 
       <div className="text-center mt-12">
-        <Link to="/lostandfound" className=" bg-green-400 px-6 py-2 hover:bg-green-500 transition rounded-md text-white">
+        <Link to="/lostandfound" className=" bg-green-400 px-6 py-2 font-semibold hover:bg-green-500 transition rounded-md text-white">
           View All Post
         </Link>
       </div>
