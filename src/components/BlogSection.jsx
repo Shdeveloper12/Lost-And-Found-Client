@@ -35,7 +35,7 @@ const BlogSection = () => {
   return (
     <section className="py-5 ">
       <div className="card mx-auto px-4 ">
-        <h2 className="text-3xl primary font-bold text-center mb-8">
+        <h2 className="text-2xl primary font-bold text-center mb-8">
           Latest Blog Posts
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-3 gap-6">
@@ -76,7 +76,7 @@ const BlogSection = () => {
         <div className="text-center mt-8">
           <a
             href="/blogs"
-            className="inline-block bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition"
+            className="inline-block bg-green-400 text-white px-6 py-2 rounded-md hover:bg-green-500 transition"
           >
             See All Blogs
           </a>

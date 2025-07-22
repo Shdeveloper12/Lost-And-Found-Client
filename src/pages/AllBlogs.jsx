@@ -131,7 +131,7 @@ const AllBlogs = () => {
     </Helmet>
       <section className="my-8" id="all-blogs">
         <div className="max-w-8xl mx-auto px-4 card">
-          <h2 className="text-3xl font-bold text-center mb-10">
+          <h2 className="text-2xl font-bold text-center mb-10">
             All Blog Posts
           </h2>
 
