@@ -59,7 +59,7 @@ const Banner = () => {
                 <p className="mb-4 secondary">{slide.description}</p>
                 <Link
                   to={slide.link}
-                  className="inline-block primary bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-5 py-2 rounded-full transition duration-300"
+                  className="inline-block primary bg-orange-400 hover:bg-orange-500 text-black font-semibold px-5 py-2 rounded-md transition duration-300"
                 >
                   {slide.buttonText}
                 </Link>

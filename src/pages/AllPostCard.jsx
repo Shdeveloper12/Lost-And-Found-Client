@@ -37,7 +37,7 @@ const AllPostCard = ({ post }) => {
             {date}
           </p>
           <div className="p-5">
-            <button className="bg-blue-600 rounded-full px-6 py-2 text-white hover:bg-blue-700">
+            <button className="bg-orange-400 rounded-md px-6 py-2 text-white hover:bg-orange-500">
               <Link to={`/postdetails/${_id}`}>See Details</Link>{" "}
             </button>
           </div>
