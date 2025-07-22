@@ -4,29 +4,29 @@ import img1 from "../assets/lost and found logo.png";
 const Footer = () => {
   return (
     <>
-      <footer className="footer sm:footer-horizontal bg-neutral text-neutral-content p-10 mt-20">
+      <footer className="footer sm:footer-horizontal bg-gray-100 text-neutral-content p-10 mt-20">
         <aside>
           <img src={img1} alt=""  className="h-16 w-16"/>
           <p>
-            <span className="text-xl font-bold primary">Lost & Found </span>
+            <span className="text-xl text-orange-500 font-bold primary">Lost & Found </span>
             <br />
-            <p className="secondary mt-5"> Connecting people with their lost items since 2025</p>
+            <p className="secondary mt-5 text-gray-500"> Connecting people with their lost items since 2025</p>
            
           </p>
         </aside>
 
         <nav>
-          <h6 className="footer-title primary">Quick Links</h6>
+          <h6 className="footer-title primary text-gray-800">Quick Links</h6>
           <ul className="space-y-2">
-            <li><Link to="/" className="link link-hover primary">Home</Link></li>
-            <li><Link to="/lostandfound" className="link link-hover primary">Lost & Found</Link></li>
-            <li><Link to="/addlostandfounditemspage" className="link link-hover primary">Report Item</Link></li>
+            <li><Link to="/" className="link link-hover primary text-gray-700 font-bold">Home</Link></li>
+            <li><Link to="/lostandfound" className="link link-hover primary text-gray-700 font-bold">Lost & Found</Link></li>
+            <li><Link to="/addlostandfounditemspage" className="link link-hover primary text-gray-700 font-bold">Report Item</Link></li>
           </ul>
         </nav>
 
         <nav>
-          <h6 className="footer-title primary">Social</h6>
-          <div className="grid grid-flow-col gap-4">
+          <h6 className="footer-title primary text-gray-800">Social</h6>
+          <div className="grid grid-flow-col gap-4 text-gray-700">
             <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="fill-current">
                 <path d="M24 4.557c-.883.392-1.832.656-2.828.775 
@@ -63,7 +63,7 @@ const Footer = () => {
       </footer>
 
       {/* Copyright */}
-      <div className="bg-neutral text-center text-sm text-neutral-content py-4 primary">
+      <div className="bg-gray-100 text-center text-sm text-black pb-3 primary">
         © {new Date().getFullYear()} Lost & Found Hub. All rights reserved.
       </div>
     </>
