@@ -4,7 +4,7 @@ import img1 from "../assets/lost and found logo.png";
 const Footer = () => {
   return (
     <>
-      <footer className="footer sm:footer-horizontal bg-gray-100 text-neutral-content p-10 mt-20">
+      <footer className="footer sm:footer-horizontal  text-neutral-content p-10 mt-20">
         <aside>
           <img src={img1} alt=""  className="h-16 w-16"/>
           <p>
@@ -16,7 +16,7 @@ const Footer = () => {
         </aside>
 
         <nav>
-          <h6 className="footer-title primary text-gray-800">Quick Links</h6>
+          <h6 className="footer-title primary text-black">Quick Links</h6>
           <ul className="space-y-2">
             <li><Link to="/" className="link link-hover primary text-gray-700 font-bold">Home</Link></li>
             <li><Link to="/lostandfound" className="link link-hover primary text-gray-700 font-bold">Lost & Found</Link></li>
@@ -25,7 +25,7 @@ const Footer = () => {
         </nav>
 
         <nav>
-          <h6 className="footer-title primary text-gray-800">Social</h6>
+          <h6 className="footer-title primary text-black">Social</h6>
           <div className="grid grid-flow-col gap-4 text-gray-700">
             <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="fill-current">
@@ -63,7 +63,7 @@ const Footer = () => {
       </footer>
 
       {/* Copyright */}
-      <div className="bg-gray-100 text-center text-sm text-black pb-3 primary">
+      <div className=" text-center text-sm text-black pb-3 primary">
         © {new Date().getFullYear()} Lost & Found Hub. All rights reserved.
       </div>
     </>
