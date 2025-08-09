@@ -91,9 +91,9 @@ const Navbar = () => {
                   <img src={user?.photoURL} alt="user avatar" />
                 </div>
 
-                <div className="absolute top-12 left-1/2 -translate-x-1/2 text-sm text-gray-700 bg-white px-2 py-1 rounded shadow opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10 whitespace-nowrap">
+                <span className="absolute top-12 left-1/2 -translate-x-1/2 text-sm text-gray-700 bg-white px-2 py-1 rounded shadow opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10 whitespace-nowrap">
                   {user?.displayName || "User"}
-                </div>
+                </span>
               </div>
 
               <ul

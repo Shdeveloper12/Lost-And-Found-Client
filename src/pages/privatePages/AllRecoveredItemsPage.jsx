@@ -116,7 +116,7 @@ const MyRecoveredPosts = () => {
                     <span className="text-blue-600">{item.userEmail}</span>
                   </p>
                   <p className="secondary">
-                    <strong>Post ID:</strong>{" "}
+                    <strong>Post ID</strong>{" "}
                     <span className="text-blue-600">{item.postId}</span>
                   </p>
                 </div>
