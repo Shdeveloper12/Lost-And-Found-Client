@@ -31,6 +31,16 @@ const BlogSection = () => {
       date: "June 20, 2025",
       image: "https://www.freeiconspng.com/uploads/tips-png-25.png",
     },
+      {
+      id: "8",
+      title: "Your Checklist Before Leaving a Public Place",
+      excerpt:
+        "Simple reminder habits can help you avoid leaving anything behind.",
+      author: "Jannatul Nayeem",
+      date: "June 17, 2025",
+      image:
+        "https://www.shutterstock.com/image-photo/check-list-concept-businessman-tick-600nw-2442962431.jpg",
+    },
   ];
   return (
     <section className="py-5 ">
@@ -38,7 +48,7 @@ const BlogSection = () => {
         <h2 className="text-2xl primary font-bold text-center mb-8">
           Latest Blog Posts
         </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 gap-6">
           {blogPosts.map((post) => (
             <motion.div
               key={post.id}
