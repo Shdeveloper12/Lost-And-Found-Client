@@ -22,11 +22,11 @@ const AllPostCard = ({ post }) => {
         }}
       >
         <figure className=" ">
-          <img src={imageurl} alt="Shoes" className=" w-full h-70  object-cover"/>
+          <img src={imageurl} alt="Shoes" className=" w-full h-60  object-cover"/>
         </figure>
-        <div className=" items-center text-center p-5">
-          <h2 className=" text-lg  primary ">
-            <span className="font-bold text-left secondary">Title:</span> {title}
+        <div className=" items-center text-center ">
+          <h2 className=" text-lg pt-2  primary ">
+            <span className="font-bold text-left  secondary">Title:</span> {title}
           </h2>
           <h2 className="text-lg mb-2  primary">
             <span className="font-bold secondary">Type: </span>
