@@ -97,9 +97,9 @@ const MyRecoveredPosts = () => {
             </table>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-4   gap-6">
             {recoveredPosts.map((item, index) => (
-              <div key={item._id} className="card bg-base-100 shadow-md border">
+              <div key={item._id} className="card bg-base-100 hover:shadow-blue-200 shadow-md hover:ease-in-out border border-gray-200 transition duration-300">
                 <div className="card-body">
                   <h3 className="card-title text-lg secondary">
                     Recovered Post {index + 1}
@@ -110,6 +110,10 @@ const MyRecoveredPosts = () => {
                   <p className="secondary">
                     <strong>Date:</strong>{" "}
                     {new Date(item.recoveredDate).toLocaleDateString()}
+                  </p>
+                  <p className="secondary">
+                    <strong>Email:</strong>{" "}
+                    <span className="text-blue-600">{item.userEmail}</span>
                   </p>
                   <p className="secondary">
                     <strong>Post ID:</strong>{" "}
