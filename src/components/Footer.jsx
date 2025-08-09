@@ -4,7 +4,7 @@ import img1 from "../assets/lost and found logo.png";
 const Footer = () => {
   return (
     <>
-      <footer className="footer sm:footer-horizontal  text-neutral-content p-10 mt-20">
+      <footer className="footer sm:footer-horizontal flex justify-between  text-neutral-content p-10 mt-20">
         <aside>
           <img src={img1} alt=""  className="h-16 w-16"/>
           <p>
